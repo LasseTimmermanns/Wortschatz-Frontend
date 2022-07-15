@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreComponent implements OnInit {
 
+  cards = [
+    {word:'Superman'},
+    {word:'Batman'},
+    {word:'BatGirl'},
+    {word:'Robin'},
+    {word:'Flash'}
+  ];
+
+  stack_size = 5
+
   constructor() { }
 
   ngOnInit(): void {
