@@ -21,6 +21,7 @@ export class ExploreComponent implements OnInit {
   attempt : number = 0;
   lastX: number = 0;
   lastY: number = 0;
+  target: any = null;
 
   constructor() { }
 
@@ -30,35 +31,49 @@ export class ExploreComponent implements OnInit {
 
   cardPressing(event: any){
     event.preventDefault();
+    this.target = event.currentTarget;
     this.lastX = event.pageX;
     this.lastY = event.pageY;
-
-    console.log("First Pressing X = " + event.pageX)
-
     this.isDragging = true;
   }
 
   cardReleasing(event: any){
     event.preventDefault();
-    console.log("now releasing")
     this.isDragging = false;
+
+    let rotation = this.target.style.rotate.replace("deg", "")
+    if(rotation < 10 && rotation > -10){
+      this.rotate(this.target, 0);
+      this.updateMargins(this.target, 0, 0)
+    }
+
   }
 
 
   cardMoving(event: any){
     if(!this.isDragging) return;
+    event.preventDefault();
     this.attempt = 0;
 
-    let firstMarginLeft : number = event.currentTarget.style.marginLeft.replace("px", "");
+    let firstMarginLeft : number = this.target.style.marginLeft.replace("px", "");
     let marginX = +firstMarginLeft + event.pageX - this.lastX;
-    event.currentTarget.style.marginLeft =  marginX + "px";
-
-    let firstMarginTop : number = event.currentTarget.style.marginTop.replace("px", "");
+    let firstMarginTop : number = this.target.style.marginTop.replace("px", "");
     let marginY = +firstMarginTop + event.pageY - this.lastY;
-    event.currentTarget.style.marginTop =  marginY + "px";
 
+    this.updateMargins(this.target, marginX, marginY);
 
+    let deg = marginX / 15;
+    this.rotate(this.target, deg);
     this.lastX = event.pageX;
     this.lastY = event.pageY;
+  }
+
+  rotate(element : any, deg : number){
+    element.style.rotate = deg + "deg";
+  }
+
+  updateMargins(element : any, marginLeft : number, marginTop : number){
+    element.style.marginLeft = marginLeft + "px";
+    element.style.marginTop = marginTop + "px";
   }
 }
