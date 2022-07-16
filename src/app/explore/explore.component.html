@@ -1,5 +1,13 @@
 <div class="card-wrapper">
   <app-card *ngFor="let card of cards; let indexOfelement=index;" [myIndex]="indexOfelement"
-            [ngStyle]="{'margin-left': indexOfelement * 5 + 'px', 'margin-top': indexOfelement * 5 + 'px', 'z-index': stack_size - indexOfelement}"></app-card>
+            [ngStyle]="{'margin-left.px': indexOfelement * 5,
+            'margin-top.px': indexOfelement * 5,
+            'z-index': stack_size - indexOfelement}"
+            (pointerdown)="cardPressing($event)"
+            (pointerup)="cardReleasing($event)"
+            (pointerleave)="cardReleasing($event)"
+            (pointercancel)="cardReleasing($event)"
+            (pointermove)="cardMoving($event)"
+            draggable="true"></app-card>
 </div>
 

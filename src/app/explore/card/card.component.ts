@@ -8,11 +8,11 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() myIndex = 0
+  isTop: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
 
   }
-
 }
