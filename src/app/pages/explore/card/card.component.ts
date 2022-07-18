@@ -40,6 +40,23 @@ export class CardComponent implements OnInit {
       this.cardMovementService.pressCard(this.elRef, event);
     }
 
+    cardYes(){
+      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 1.5, 0, 300);
+      this.removeAfterTime(700);
+  }
+
+    cardNo(){
+      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 1.5, 0, 300, false);
+      this.removeAfterTime(700);
+  }
+
+  removeAfterTime(time : number){
+    let elRef = this.elRef;
+    setTimeout(function(){
+      ExploreComponent.exploreComponent.removeCard(elRef);
+    }, time);
+  }
+
   switchDisplay(){
     this.showFront = !this.showFront;
   }

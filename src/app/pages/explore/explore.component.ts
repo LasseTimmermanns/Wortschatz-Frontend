@@ -26,9 +26,9 @@ export class ExploreComponent implements OnInit {
   @ViewChild(CardComponent, {read: ElementRef}) card! : ElementRef;
   cards : ComponentRef<CardComponent>[] = [];
 
-
   @HostListener('pointerup', ["$event"])
   @HostListener('pointercancel', ["$event"])
+  @HostListener('pointerleave', ["$event"])
   releaseCard(){
     if(this.cards.length < 1) return;
     let compRef : ComponentRef<CardComponent> = this.cards[0];
@@ -38,10 +38,7 @@ export class ExploreComponent implements OnInit {
 
   @HostListener('pointermove', ["$event"])
   moveCard(){
-    if(this.cards.length < 1){
-      console.log("<1")
-      return;
-    };
+    if(this.cards.length < 1) return;
 
     let compRef : ComponentRef<CardComponent> = this.cards[0];
     let elRef : ElementRef = compRef.instance.elRef;
@@ -56,6 +53,7 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
     ExploreComponent.exploreComponent = this;
+
   }
 
   removeCard(elRef : ElementRef){

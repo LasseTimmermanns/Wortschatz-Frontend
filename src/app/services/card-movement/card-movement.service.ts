@@ -31,9 +31,6 @@ export class CardMovementService {
     let marginY = +firstMarginTop + event.pageY - card.lastY;
 
     this.cardStyleService.updateMargins(elRef, marginX, marginY);
-
-    let deg = marginX / 30;
-    this.cardStyleService.rotate(elRef, deg);
     card.lastX = event.pageX;
     card.lastY = event.pageY;
   }
