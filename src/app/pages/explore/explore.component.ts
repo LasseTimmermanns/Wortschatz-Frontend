@@ -22,7 +22,7 @@ export class ExploreComponent implements OnInit {
 
   public static stack_size : number = 5;
   public static exploreComponent: ExploreComponent;
-  @ViewChild('cardWrapper', {read: ViewContainerRef}) cardWrapper! : ViewContainerRef;
+  @ViewChild('createCardsHere', {read: ViewContainerRef}) createCardsHere! : ViewContainerRef;
   @ViewChild(CardComponent, {read: ElementRef}) card! : ElementRef;
   cards : ComponentRef<CardComponent>[] = [];
 
@@ -51,7 +51,7 @@ export class ExploreComponent implements OnInit {
   constructor(private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
   createCards(){
-    this.cards = (this.cardCreationService.createCards(this.cardWrapper, ExploreComponent.stack_size));
+    this.cards = (this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size));
   }
 
   ngOnInit(): void {

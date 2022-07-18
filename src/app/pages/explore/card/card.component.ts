@@ -11,10 +11,14 @@ import {ExploreComponent} from "../explore.component";
 export class CardComponent implements OnInit {
 
   isTop: boolean = true;
-  word : String = "";
+  word : String = "skurril";
   isDragging: boolean = false;
-  index : number = 10;
+  index : number = 0;
   elRef : ElementRef;
+  frequencyWhite = Array(3).fill(0).map((x,i)=>i);
+  frequencyGrey = Array(2).fill(0).map((x,i)=>i);
+  synonyms : string[] = ["absonderlich", "ausgefallen", "befremdend", "bizarr"];
+  showFront : boolean = true;
 
   ngOnInit(): void {
     if(this.index == 0){
@@ -36,4 +40,7 @@ export class CardComponent implements OnInit {
       this.cardMovementService.pressCard(this.elRef, event);
     }
 
+  switchDisplay(){
+    this.showFront = !this.showFront;
+  }
 }

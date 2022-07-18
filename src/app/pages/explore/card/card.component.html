@@ -1,8 +1,24 @@
 <div class="card-inner-wrapper">
-<p class="word">{{word}}</p>
+  <div #front *ngIf="showFront">
+    <p class="word wordFont">{{word}}</p>
+  </div>
+  <div #back *ngIf="!showFront">
+    <div class="cardGrid">
+      <div class="wordDisplayBack wordFont">{{word}}</div>
+      <div class="kind"><span class="title">Wortart</span>Adjektiv</div>
+      <div class="utilization"><span class="title">Nutzung</span>bildungssprachlich</div>
+      <div class="frequency"><span class="title">Häufigkeit</span><div class="bulletContainer">
+        <div class="bullet white" *ngFor="let val of frequencyWhite"></div>
+        <div class="bullet grey" *ngFor="let val of frequencyGrey"></div></div></div>
+      <div class="synonyms"><span class="title">Synonyme</span>
+        <ul><li *ngFor="let synonym of synonyms">{{synonym}}</li></ul></div>
+      <div class="description"><span class="title">Beschreibung</span>(in Aussehen oder Wesen) sonderbar, absonderlich anmutend, auf lächerliche oder befremdende Weise eigenwillig; seltsam</div>
+    </div>
+  </div>
+
 <div class="option-container">
   <div class="option"><div class="no"><img src="../../../../assets/img/no.svg"></div></div>
-  <div class="option"><div class="info"><img src="../../../../assets/img/info.svg"></div></div>
+  <div class="option"><div class="info" (click)="switchDisplay()"><img src="../../../../assets/img/info.svg"></div></div>
   <div class="option"><div class="yes"><img src="../../../../assets/img/yes.svg"></div></div>
 </div>
 </div>

@@ -8,7 +8,6 @@ export class CardCreationService {
 
   constructor() { }
 
-
   createCards(viewContainerRef : ViewContainerRef, stack_size: number) : ComponentRef<CardComponent>[]{
     let out : ComponentRef<CardComponent>[] = [];
 
