@@ -41,13 +41,13 @@ export class CardComponent implements OnInit {
     }
 
     cardYes(){
-      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 1.5, 0, 300);
-      this.removeAfterTime(700);
+      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 2, 0, 200);
+      this.removeAfterTime(500);
   }
 
     cardNo(){
-      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 1.5, 0, 300, false);
-      this.removeAfterTime(700);
+      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 2, 0, 200, false);
+      this.removeAfterTime(500);
   }
 
   removeAfterTime(time : number){

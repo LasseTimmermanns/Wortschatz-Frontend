@@ -37,15 +37,12 @@ export class CardStyleService {
     if(!positive) factor = -1;
     let interval = setInterval(function(){
       if(times * timeout >= time){
-        console.log("CLEAR")
         clearInterval(interval);
       }
       times++;
 
-      thisService.updateMargins(elRef, factor * Math.pow(stepSizeX * times, 3), factor * Math.pow(stepSizeY * times, 3))
-
-      console.log("Oooo Yeaaa!");
-
+      thisService.updateMargins(elRef, factor * Math.pow(stepSizeX * times, 2),
+        factor * Math.pow(stepSizeY * times, 2))
 
     }, timeout);
   }
@@ -59,7 +56,7 @@ export class CardStyleService {
   }
 
   calculateStepSize(x : number, steps : number) : number{
-    let lastX = Math.pow(x, 1 / 3);
+    let lastX = Math.pow(x, 1 / 2);
     return lastX / steps;
   }
 
