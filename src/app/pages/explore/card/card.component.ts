@@ -13,8 +13,6 @@ export class CardComponent implements OnInit {
   isTop: boolean = true;
   word : String = "";
   isDragging: boolean = false;
-  lastX: number = 0;
-  lastY: number = 0;
   index : number = 10;
   elRef : ElementRef;
 
