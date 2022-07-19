@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core';
 import {CardMovementService} from "../../../services/card-movement/card-movement.service";
 import {CardStyleService} from "../../../services/card-style/card-style.service";
 import {ExploreComponent} from "../explore.component";
@@ -10,6 +10,9 @@ import {ExploreComponent} from "../explore.component";
 })
 export class CardComponent implements OnInit {
 
+  @HostBinding('class.rotate-left-animation') rotateLeft: boolean = false;
+  @HostBinding('class.rotate-right-animation') rotateRight: boolean = false;
+
   isTop: boolean = true;
   word : String = "skurril";
   isDragging: boolean = false;
@@ -19,6 +22,8 @@ export class CardComponent implements OnInit {
   frequencyGrey = Array(2).fill(0).map((x,i)=>i);
   synonyms : string[] = ["absonderlich", "ausgefallen", "befremdend", "bizarr"];
   showFront : boolean = true;
+
+
 
   ngOnInit(): void {
     if(this.index == 0){
@@ -41,13 +46,13 @@ export class CardComponent implements OnInit {
     }
 
     cardYes(){
-      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 2, 0, 200);
-      this.removeAfterTime(500);
+      this.rotateRight = true;
+      this.removeAfterTime(300);
   }
 
     cardNo(){
-      this.cardStyleService.animateMargin(this.elRef, this.elRef.nativeElement.offsetWidth / 2, 0, 200, false);
-      this.removeAfterTime(500);
+      this.rotateLeft = true;
+      this.removeAfterTime(300);
   }
 
   removeAfterTime(time : number){
