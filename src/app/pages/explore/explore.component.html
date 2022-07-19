@@ -1,5 +1,5 @@
 <app-filter></app-filter>
-<div class="card-wrapper" #cardWrapper>
+<div class="card-wrapper" #cardWrapper [ngClass]="{'card-wrapper-on-extend' : filterExtended}">
   <button (click)="createCards()">MyButton</button>
   <div #createCardsHere style="display: none;"></div>
   <!--<app-card *ngFor="let card of cards; let indexOfelement=index;" (pointerdown)="cardPressing($event)"></app-card>
@@ -7,6 +7,5 @@
             'margin-top.px': {{myIndex}} * 5,
             'z-index': stack_size - indexOfelement}"-->
 </div>
-
 
 

@@ -20,9 +20,11 @@ import {CardMovementService} from "../../services/card-movement/card-movement.se
 })
 export class ExploreComponent implements OnInit {
 
+  filterExtended = false;
   public static stack_size : number = 5;
   public static exploreComponent: ExploreComponent;
   @ViewChild('createCardsHere', {read: ViewContainerRef}) createCardsHere! : ViewContainerRef;
+  @ViewChild('cardWrapper', {read: ViewRef}) cardWrapper! : ViewRef;
   @ViewChild(CardComponent, {read: ElementRef}) card! : ElementRef;
   cards : ComponentRef<CardComponent>[] = [];
 
@@ -67,5 +69,6 @@ export class ExploreComponent implements OnInit {
 
     this.cards[0].instance.isTop = true;
   }
+
 
 }

@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, Component, Directive, ElementRef, HostBinding, OnInit} from '@angular/core';
+import {ExploreComponent} from "../explore.component";
 
 
 
@@ -10,8 +11,8 @@ import {ChangeDetectorRef, Component, Directive, ElementRef, HostBinding, OnInit
 
 
 export class FilterComponent implements OnInit {
-  @HostBinding('class.filter-extended') extend: boolean = false;
-  @HostBinding('class.filter-retracted') retract: boolean = true;
+  @HostBinding('class.filter-extended') extended: boolean = false;
+  @HostBinding('class.filter-retracted') retracted: boolean = true;
 
   constructor(private cdRef:ChangeDetectorRef, private elRef : ElementRef) { }
 
@@ -19,8 +20,9 @@ export class FilterComponent implements OnInit {
   }
 
   changeExtended(){
-    this.extend = !this.extend;
-    this.retract = !this.retract;
+    this.extended = !this.extended;
+    this.retracted = !this.retracted;
+    ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
 
 
