@@ -10,7 +10,7 @@
         <div class="form-check" id="{{val}}" title="{{i}}">
           <input class="form-check-input" type="checkbox" value="" id="kind_box_{{val}}"
           (click)="kindCheckboxClicked($event)">
-          <label class="form-check-label" for="kind_box_{{val}}">
+          <label class="form-check-label unselectable" for="kind_box_{{val}}">
             {{val}}
           </label>
         </div>
@@ -24,7 +24,7 @@
       <div *ngFor="let val of nutzungen; index as i">
         <div class="form-check" id="{{val}}" title="{{i}}">
           <input class="form-check-input" type="checkbox" value="" id="utili_box_{{val}}" (click)="utilizationCheckboxClicked($event)">
-          <label class="form-check-label" for="utili_box_{{val}}">
+          <label class="form-check-label unselectable" for="utili_box_{{val}}">
             {{val}}
           </label>
         </div>
