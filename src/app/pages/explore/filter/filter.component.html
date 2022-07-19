@@ -8,7 +8,7 @@
     <div #kindUnchecked class="checkbox-container">
       <div *ngFor="let val of wortarten; index as i">
         <div class="form-check" id="{{val}}" title="{{i}}">
-          <input class="form-check-input" type="checkbox" value="" id="kind_box_{{val}}}"
+          <input class="form-check-input" type="checkbox" value="" id="kind_box_{{val}}"
           (click)="kindCheckboxClicked($event)">
           <label class="form-check-label" for="kind_box_{{val}}">
             {{val}}
