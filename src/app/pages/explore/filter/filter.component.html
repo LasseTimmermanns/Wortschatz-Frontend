@@ -5,23 +5,29 @@
   <div id="kind" class="filter-section">
     <span class="filter-headline">Wortart</span>
     <div class="checkbox-container">
-      <div class="form-check" *ngFor="let val of wortarten">
-        <input class="form-check-input" type="checkbox" value="" id="box_{{val}}}">
-        <label class="form-check-label" for="box_{{val}}">
-          {{val}}
-        </label>
+      <div #kindChecked></div>
+      <div #kindUnchecked class="uncheckedContainer">
+        <div *ngFor="let val of wortarten; index as i">
+          <div class="form-check" id="{{val}}" title="{{i}}">
+            <input class="form-check-input" type="checkbox" value="" id="kind_box_{{val}}}"
+            (click)="kindCheckboxClicked($event)">
+            <label class="form-check-label" for="kind_box_{{val}}">
+              {{val}}
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div id="utilization" class="filter-section">
     <span class="filter-headline">Nutzung</span>
     <div class="checkbox-container">
-      <div #checked></div>
-      <div #unchecked>
-        <div *ngFor="let val of nutzungen; index as i" id="unchecked_placeholder_{{i}}">
+      <div #utilizationChecked></div>
+      <div #utilizationUnchecked class="uncheckedContainer">
+        <div *ngFor="let val of nutzungen; index as i">
           <div class="form-check" id="{{val}}" title="{{i}}">
-            <input class="form-check-input" type="checkbox" value="" id="box_{{val}}" (click)="checkboxClicked($event)">
-            <label class="form-check-label" for="box_{{val}}">
+            <input class="form-check-input" type="checkbox" value="" id="utili_box_{{val}}" (click)="utilizationCheckboxClicked($event)">
+            <label class="form-check-label" for="utili_box_{{val}}">
               {{val}}
             </label>
           </div>

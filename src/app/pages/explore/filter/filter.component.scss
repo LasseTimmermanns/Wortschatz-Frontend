@@ -20,6 +20,10 @@
   scrollbar-width: none;
 }
 
+.uncheckedContainer{
+  max-height: 100%;
+}
+
 .checkbox-container::-webkit-scrollbar {
   display: none;
 }

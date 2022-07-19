@@ -22,8 +22,10 @@ import {ExploreComponent} from "../explore.component";
 export class FilterComponent implements OnInit {
   @HostBinding('class.filter-extended') extended: boolean = true;
   @HostBinding('class.filter-retracted') retracted: boolean = false;
-  @ViewChild('checked') checkedBoxes! : ElementRef;
-  @ViewChild('unchecked') uncheckedBoxes! : ElementRef;
+  @ViewChild('utilizationChecked') utiliCheckedBoxes! : ElementRef;
+  @ViewChild('utilizationUnchecked') utiliUncheckedBoxes! : ElementRef;
+  @ViewChild('kindChecked') kindCheckedBoxes! : ElementRef;
+  @ViewChild('kindUnchecked') kindUncheckedBoxes! : ElementRef;
 
   wortarten : string[] = ["Substantiv", "Verb", "Adjektiv", "Adverb"]
   nutzungen : string[] = [
@@ -68,12 +70,20 @@ export class FilterComponent implements OnInit {
     ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
 
-  checkboxClicked(event : any){
+  utilizationCheckboxClicked(event : any){
     let boxContainer = event.currentTarget.parentElement;
-    if(event.currentTarget.checked) return this.checkedBoxes.nativeElement.appendChild(boxContainer);
+    if(event.currentTarget.checked) return this.utiliCheckedBoxes.nativeElement.appendChild(boxContainer);
 
     let index = boxContainer.title;
-    this.uncheckedBoxes.nativeElement.children[index].appendChild(boxContainer);
+    this.utiliUncheckedBoxes.nativeElement.children[index].appendChild(boxContainer);
+  }
+
+  kindCheckboxClicked(event : any){
+    let boxContainer = event.currentTarget.parentElement;
+    if(event.currentTarget.checked) return this.kindCheckedBoxes.nativeElement.appendChild(boxContainer);
+
+    let index = boxContainer.title;
+    this.kindUncheckedBoxes.nativeElement.children[index].appendChild(boxContainer);
   }
 
 }
