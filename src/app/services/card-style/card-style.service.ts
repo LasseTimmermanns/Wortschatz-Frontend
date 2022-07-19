@@ -1,11 +1,12 @@
 import {ElementRef, Injectable} from '@angular/core';
+import {StyleHelperService} from "../style-helper/style-helper.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardStyleService {
 
-  constructor() { }
+  constructor(private styleHelper : StyleHelperService) { }
 
   public resetMargins(elRef : ElementRef){
     let index = elRef.nativeElement.index;
@@ -29,12 +30,12 @@ export class CardStyleService {
     let thisService = this;
     let timeout = 10;
 
+    let stepSizeX = this.styleHelper.calculateStepSize(marginLeft, time / timeout);
+    let stepSizeY = this.styleHelper.calculateStepSize(marginTop, time / timeout);
 
-    //X
-    let stepSizeX = this.calculateStepSize(marginLeft, time / timeout);
-    let stepSizeY = this.calculateStepSize(marginTop, time / timeout);
     let factor = 1;
     if(!positive) factor = -1;
+
     let interval = setInterval(function(){
       if(times * timeout >= time){
         clearInterval(interval);
@@ -53,11 +54,6 @@ export class CardStyleService {
 
   getMarginLeft(elRef : ElementRef) : number{
     return +elRef.nativeElement.style.marginLeft.replace("px", "")
-  }
-
-  calculateStepSize(x : number, steps : number) : number{
-    let lastX = Math.pow(x, 1 / 2);
-    return lastX / steps;
   }
 
   public updateMargins(elRef : ElementRef, marginLeft : number = 0, marginTop : number = 0){

@@ -7,6 +7,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { CardComponent } from './pages/explore/card/card.component';
 import {RouterModule, Routes} from "@angular/router";
+import { FilterComponent } from './pages/explore/filter/filter.component';
 
 const allRoutes: Routes = [
   {path: "", component: ExploreComponent},
@@ -18,7 +19,8 @@ const allRoutes: Routes = [
     AppComponent,
     MenuComponent,
     ExploreComponent,
-    CardComponent
+    CardComponent,
+    FilterComponent
   ],
   imports: [
     RouterModule.forRoot(allRoutes),
