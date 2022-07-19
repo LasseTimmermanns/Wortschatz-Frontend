@@ -4,7 +4,7 @@
 <div class="filter-menu">
   <div id="kind" class="filter-section">
     <span class="filter-headline">Wortart</span>
-    <div #kindChecked></div>
+    <div #kindChecked class="checked-container"></div>
     <div #kindUnchecked class="checkbox-container">
       <div *ngFor="let val of wortarten; index as i">
         <div class="form-check" id="{{val}}" title="{{i}}">
@@ -19,7 +19,7 @@
   </div>
   <div id="utilization" class="filter-section">
     <span class="filter-headline">Nutzung</span>
-    <div #utilizationChecked></div>
+    <div #utilizationChecked class="checked-container"></div>
     <div #utilizationUnchecked class="checkbox-container">
       <div *ngFor="let val of nutzungen; index as i">
         <div class="form-check" id="{{val}}" title="{{i}}">
