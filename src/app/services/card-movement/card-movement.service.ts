@@ -15,7 +15,8 @@ export class CardMovementService {
     let card = elRef.nativeElement;
     card.lastX = event.pageX;
     card.lastY = event.pageY;
-
+    /*this.cardStyleService.setTransformOrigin(elRef, event.pageX - card.getBoundingClientRect().x,
+      event.pageY - card.getBoundingClientRect().y)*/
     card.isDragging = true;
   }
 
@@ -41,7 +42,7 @@ export class CardMovementService {
 
     card.isDragging = false;
 
-    let rotation = card.style.rotate.replace("deg", "")
+    let rotation = this.cardStyleService.getRotation(elRef);
     if(rotation < 5 && rotation > -5){
       this.cardStyleService.rotate(elRef,0);
       this.cardStyleService.resetMargins(elRef);

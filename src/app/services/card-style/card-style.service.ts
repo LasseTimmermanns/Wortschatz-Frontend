@@ -18,11 +18,21 @@ export class CardStyleService {
   }
 
   public setTransformOrigin(elRef : ElementRef, x : number, y : number){
+    console.log("x = " + x);
+    console.log("y = " + y);
+    console.log("--");
     elRef.nativeElement.style.transformOrigin = x + " " + y;
   }
 
   public rotate(elRef : ElementRef, deg : number){
-    elRef.nativeElement.style.rotate = deg + "deg";
+    elRef.nativeElement.style.transform = 'translate(-50%, -50%)' + ' ' + 'rotate(' + deg + 'deg)';
+  }
+
+  public getRotation(elRef : ElementRef) : number{
+    let input = elRef.nativeElement.style.transform;
+    let regexp = new RegExp("rotate\\((.*?)deg\\)");
+    // @ts-ignore
+    return +regexp.exec(input)[1];
   }
 
   public animateMargin(elRef : ElementRef, marginLeft : number = 0, marginTop : number = 0, time : number = 1000, positive : boolean = true){

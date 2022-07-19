@@ -11,12 +11,13 @@ import {ExploreComponent} from "../explore.component";
 
 
 export class FilterComponent implements OnInit {
-  @HostBinding('class.filter-extended') extended: boolean = false;
-  @HostBinding('class.filter-retracted') retracted: boolean = true;
+  @HostBinding('class.filter-extended') extended: boolean = true;
+  @HostBinding('class.filter-retracted') retracted: boolean = false;
 
-  constructor(private cdRef:ChangeDetectorRef, private elRef : ElementRef) { }
+  constructor() { }
 
   ngOnInit(): void {
+    ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
 
   changeExtended(){
@@ -24,7 +25,5 @@ export class FilterComponent implements OnInit {
     this.retracted = !this.retracted;
     ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
-
-
 
 }
