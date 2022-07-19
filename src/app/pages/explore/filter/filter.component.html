@@ -2,5 +2,33 @@
   <img src="assets/img/filter.svg" >
 </div>
 <div class="filter-menu">
-  FHDSJKFH
+  <div id="kind" class="filter-section">
+    <span class="filter-headline">Wortart</span>
+    <div class="checkbox-container">
+      <div class="form-check" *ngFor="let val of wortarten">
+        <input class="form-check-input" type="checkbox" value="" id="box_{{val}}}">
+        <label class="form-check-label" for="box_{{val}}">
+          {{val}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div id="utilization" class="filter-section">
+    <span class="filter-headline">Nutzung</span>
+    <div class="checkbox-container">
+      <div #checked></div>
+      <div #unchecked>
+        <div *ngFor="let val of nutzungen; index as i" id="unchecked_placeholder_{{i}}">
+          <div class="form-check" id="{{val}}" title="{{i}}">
+            <input class="form-check-input" type="checkbox" value="" id="box_{{val}}" (click)="checkboxClicked($event)">
+            <label class="form-check-label" for="box_{{val}}">
+              {{val}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="frequency" class="filter-section">
+    <span class="filter-headline">Häufigkeit</span></div>
 </div>
