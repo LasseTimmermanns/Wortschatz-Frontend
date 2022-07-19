@@ -58,7 +58,7 @@ export class CardComponent implements OnInit {
   removeAfterTime(time : number){
     let elRef = this.elRef;
     setTimeout(function(){
-      ExploreComponent.exploreComponent.removeCard(elRef);
+      ExploreComponent.exploreComponent.removeCardWithAnimation(elRef);
     }, time);
   }
 

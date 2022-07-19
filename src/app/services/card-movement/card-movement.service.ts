@@ -47,7 +47,7 @@ export class CardMovementService {
       this.cardStyleService.rotate(elRef,0);
       this.cardStyleService.resetMargins(elRef);
     }else{
-      ExploreComponent.exploreComponent.removeCard(elRef);
+      ExploreComponent.exploreComponent.removeCardWithAnimation(elRef);
     }
   }
 }

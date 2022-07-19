@@ -3,7 +3,7 @@ import {
   ComponentRef,
   ElementRef,
   HostListener,
-  OnInit,
+  OnInit, Renderer2,
   ViewChild,
   ViewContainerRef,
   ViewRef
@@ -47,7 +47,7 @@ export class ExploreComponent implements OnInit {
     this.cardMovementService.moveCard(elRef, event);
   }
 
-  constructor(private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
+  constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
   createCards(){
     this.cards = (this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size));
@@ -56,6 +56,13 @@ export class ExploreComponent implements OnInit {
   ngOnInit(): void {
     ExploreComponent.exploreComponent = this;
 
+  }
+
+  removeCardWithAnimation(elRef : ElementRef){
+    this.renderer.addClass(elRef.nativeElement, "card-disappear");
+    setTimeout(function (){
+      ExploreComponent.exploreComponent.removeCard(elRef);
+    }, 1000);
   }
 
   removeCard(elRef : ElementRef){
@@ -69,6 +76,8 @@ export class ExploreComponent implements OnInit {
 
     this.cards[0].instance.isTop = true;
   }
+
+
 
 
 }

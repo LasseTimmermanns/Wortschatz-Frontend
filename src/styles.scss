@@ -20,6 +20,12 @@ html, body{
   right: -300px;
 }
 
+.card-disappear{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+
 .rotate-left-animation{
   transition: all 0.3s linear !important;;
   transform: translate(-50%, -50%) rotate(-10deg) !important;;
