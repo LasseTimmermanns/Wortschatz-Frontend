@@ -71,6 +71,7 @@ export class ExploreComponent implements OnInit {
   }
 
   removeCardFromGlobal(){
+    this.cards[0].instance.willBeRemoved = true;
     this.cards.shift();
 
     if(this.cards.length == 0){

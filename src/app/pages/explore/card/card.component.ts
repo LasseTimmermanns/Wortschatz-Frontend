@@ -22,6 +22,7 @@ export class CardComponent implements OnInit {
   frequencyGrey = Array(2).fill(0).map((x,i)=>i);
   synonyms : string[] = ["absonderlich", "ausgefallen", "befremdend", "bizarr"];
   showFront : boolean = true;
+  willBeRemoved : boolean = false;
 
 
 
@@ -46,11 +47,13 @@ export class CardComponent implements OnInit {
     }
 
     cardYes(){
+      if(this.willBeRemoved) return;
       this.rotateRight = true;
       this.removeAfterTime(300);
   }
 
     cardNo(){
+      if(this.willBeRemoved) return;
       this.rotateLeft = true;
       this.removeAfterTime(300);
   }

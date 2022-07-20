@@ -20,8 +20,8 @@ import {ExploreComponent} from "../explore.component";
 
 
 export class FilterComponent implements OnInit {
-  @HostBinding('class.filter-extended') extended: boolean = true;
-  @HostBinding('class.filter-retracted') retracted: boolean = false;
+  @HostBinding('class.filter-extended') extended: boolean = false;
+  @HostBinding('class.filter-retracted') retracted: boolean = !this.extended;
 
   @ViewChild('utilizationChecked') utiliCheckedBoxes! : ElementRef;
   @ViewChild('utilizationUnchecked') utiliUncheckedBoxes! : ElementRef;
