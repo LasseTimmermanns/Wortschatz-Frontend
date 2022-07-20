@@ -38,6 +38,10 @@ export class ExploreComponent implements OnInit {
     this.cardMovementService.releaseCard(elRef, event)
   }
 
+  ngAfterViewInit() : void{
+    this.createCards();
+  }
+
   @HostListener('pointermove', ["$event"])
   moveCard(){
     if(this.cards.length < 1) return;
