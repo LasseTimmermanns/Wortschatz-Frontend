@@ -15,17 +15,21 @@ import {ExploreComponent} from "../explore.component";
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss', './checkboxes.scss']
+  styleUrls: ['./filter.component.scss', './checkboxes.scss', './range.scss']
 })
 
 
 export class FilterComponent implements OnInit {
-  @HostBinding('class.filter-extended') extended: boolean = false;
-  @HostBinding('class.filter-retracted') retracted: boolean = true;
+  @HostBinding('class.filter-extended') extended: boolean = true;
+  @HostBinding('class.filter-retracted') retracted: boolean = false;
+
   @ViewChild('utilizationChecked') utiliCheckedBoxes! : ElementRef;
   @ViewChild('utilizationUnchecked') utiliUncheckedBoxes! : ElementRef;
   @ViewChild('kindChecked') kindCheckedBoxes! : ElementRef;
   @ViewChild('kindUnchecked') kindUncheckedBoxes! : ElementRef;
+
+  @ViewChild('frequencyRange') frequencyRange! : ElementRef;
+  @ViewChild('frequencyRangeText') frequencyRangeText! : ElementRef;
 
   wortarten : string[] = ["Substantiv", "Verb", "Adjektiv", "Adverb"]
   nutzungen : string[] = [
@@ -76,6 +80,19 @@ export class FilterComponent implements OnInit {
 
     let index = boxContainer.title;
     uncheckedBoxContainer.nativeElement.children[index].appendChild(boxContainer);
+  }
+
+  onRangeInput(){
+    let val:number = this.frequencyRange.nativeElement.value;
+    let texts = {
+      1: "Nur die meistbenutzen Wörter",
+      2: "Auch sehr oft benutze Wörter",
+      3: "Auch oft benutzte Wörter",
+      4: "Auch seltener benutze Wörter",
+      5: "Auch sehr selten benutze Wörter"}
+
+    // @ts-ignore
+    this.frequencyRangeText.nativeElement.innerHTML = texts[val];
   }
 
 }

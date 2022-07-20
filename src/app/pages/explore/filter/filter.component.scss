@@ -4,6 +4,8 @@
   position: fixed;
   display: grid;
   height: 100vh;
+  max-height: 100vh;
+  row-gap: 12px;
   grid-template-rows: 20px 80px auto;
   grid-template-columns: 80px 300px;
   grid-template-areas:
@@ -24,7 +26,6 @@
 }
 
 .filter-section{
-  margin-bottom: 12px;
   width: 100%;
   max-height: 50%;
   display: grid;

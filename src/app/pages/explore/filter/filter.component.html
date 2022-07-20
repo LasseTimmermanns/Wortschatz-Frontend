@@ -33,5 +33,9 @@
     </div>
   </div>
   <div id="frequency" class="filter-section">
-    <span class="filter-headline">Häufigkeit</span></div>
+    <span class="filter-headline">Häufigkeit</span>
+    <input type="range" class="slider" value=5 min="1" max="5" id="range1" (input)="onRangeInput()" #frequencyRange>
+    <p #frequencyRangeText>Auch sehr selten benutzte Wörter</p>
+  </div>
+
 </div>
