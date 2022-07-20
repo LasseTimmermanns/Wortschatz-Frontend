@@ -27,9 +27,6 @@ export class FilterComponent implements OnInit {
   @ViewChild('kindChecked') kindCheckedBoxes! : ElementRef;
   @ViewChild('kindUnchecked') kindUncheckedBoxes! : ElementRef;
 
-  KIND : number = 0;
-  UITLIZATION : number = 0;
-
   wortarten : string[] = ["Substantiv", "Verb", "Adjektiv", "Adverb"]
   nutzungen : string[] = [
     "umgangssprachlich",
