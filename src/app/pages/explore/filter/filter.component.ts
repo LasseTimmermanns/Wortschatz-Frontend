@@ -78,7 +78,7 @@ export class FilterComponent implements OnInit {
     let boxContainer = event.currentTarget.parentElement;
     if(event.currentTarget.checked) return checkedBoxContainer.nativeElement.appendChild(boxContainer);
 
-    let index = boxContainer.title;
+    let index = boxContainer.getAttribute("placeholderfor");
     uncheckedBoxContainer.nativeElement.children[index].appendChild(boxContainer);
   }
 
