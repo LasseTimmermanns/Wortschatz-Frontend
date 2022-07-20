@@ -60,13 +60,13 @@ export class ExploreComponent implements OnInit {
 
   removeCardWithAnimation(elRef : ElementRef){
     this.renderer.addClass(elRef.nativeElement, "card-disappear");
+    ExploreComponent.exploreComponent.removeCardFromGlobal();
     setTimeout(function (){
-      ExploreComponent.exploreComponent.removeCard(elRef);
+      ExploreComponent.exploreComponent.removeCardItSelf(elRef);
     }, 1000);
   }
 
-  removeCard(elRef : ElementRef){
-    elRef.nativeElement.remove();
+  removeCardFromGlobal(){
     this.cards.shift();
 
     if(this.cards.length == 0){
@@ -75,6 +75,10 @@ export class ExploreComponent implements OnInit {
     }
 
     this.cards[0].instance.isTop = true;
+  }
+
+  removeCardItSelf(elRef : ElementRef){
+    elRef.nativeElement.remove();
   }
 
 
