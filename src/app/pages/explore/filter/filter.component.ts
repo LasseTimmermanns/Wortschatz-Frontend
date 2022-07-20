@@ -89,7 +89,7 @@ export class FilterComponent implements OnInit {
       2: "Auch sehr oft benutze Wörter",
       3: "Auch oft benutzte Wörter",
       4: "Auch seltener benutze Wörter",
-      5: "Auch sehr selten benutze Wörter"}
+      5: "Alle Wörter"}
 
     // @ts-ignore
     this.frequencyRangeText.nativeElement.innerHTML = texts[val];
