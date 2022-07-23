@@ -103,6 +103,12 @@ export class FilterComponent implements OnInit {
 
     // @ts-ignore
     this.frequencyRangeText.nativeElement.innerHTML = texts[val];
+
+    this.addFrequencyFilter(val);
+  }
+
+  addFrequencyFilter(filterValue : number){
+    this.cardCreationService.setFilter(this.cardCreationService.FILTER_FREQUENCY, filterValue);
   }
 
 }
