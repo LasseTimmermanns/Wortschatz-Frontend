@@ -2,6 +2,7 @@ import {ComponentRef, Injectable, ViewContainerRef} from '@angular/core';
 import {CardComponent} from "../pages/explore/card/card.component";
 import {HttpClient} from "@angular/common/http";
 import {filter} from "rxjs";
+import {ExploreComponent} from "../pages/explore/explore.component";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,13 @@ export class CardCreationService {
   filters : { [id : string] : any} = { "kind" : [], "utilization" : [], "limit" : 5, "frequency" : 0};
   readonly filtersDefault : { [id : string] : any} = { "kind" : [], "utilization" : [], "limit" : 5, "frequency" : 0};
 
+  filtersUpdated(){
+    ExploreComponent.exploreComponent.createNewCards();
+  }
+
   setFilter(filterKey : string, filterValue : any){
     this.filters[filterKey] = filterValue;
+    this.filtersUpdated();
   }
 
   appendFilter(filterKey : string, filterValue : string){
@@ -43,6 +49,7 @@ export class CardCreationService {
   removeFilter(filterKey : string){
     if(this.filtersDefault[filterKey] == null) throw new Error("FILTERKEY NOT FOUND");
     this.filters[filterKey] = this.filtersDefault[filterKey];
+    this.filtersUpdated();
   }
 
   applyFilters(url : string) : string{
@@ -63,7 +70,7 @@ export class CardCreationService {
   }
 
   createCards(viewContainerRef : ViewContainerRef, limit : number = 5) : ComponentRef<CardComponent>[]{
-    this.setFilter(this.FILTER_LIMIT, 5);
+
     let url = this.HOSTNAME + this.FILTER_MAP;
     url = this.applyFilters(url);
     console.log(url);

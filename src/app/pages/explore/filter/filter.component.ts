@@ -95,11 +95,11 @@ export class FilterComponent implements OnInit {
   onRangeInput(){
     let val:number = this.frequencyRange.nativeElement.value;
     let texts = {
-      1: "Nur die meistbenutzen Wörter",
-      2: "Auch sehr oft benutze Wörter",
+      5: "Nur die meistbenutzen Wörter",
+      4: "Auch sehr oft benutze Wörter",
       3: "Auch oft benutzte Wörter",
-      4: "Auch seltener benutze Wörter",
-      5: "Alle Wörter"}
+      2: "Auch seltener benutze Wörter",
+      1: "Alle Wörter"}
 
     // @ts-ignore
     this.frequencyRangeText.nativeElement.innerHTML = texts[val];

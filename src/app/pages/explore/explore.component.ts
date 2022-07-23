@@ -53,13 +53,28 @@ export class ExploreComponent implements OnInit {
 
   constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
+  createNewCards(){
+    if(this.cards.length == 0) {
+      this.createCards();
+    }
+    this.destroyCards();
+  }
+
+  destroyCards(){
+    const cardis  = Object.assign([], this.cards);
+    for(let i = 0; i < cardis.length; i++){
+      let card : ComponentRef<CardComponent> = cardis[i];
+      this.removeCardFromGlobal();
+      this.removeCardItSelf(card.instance.elRef);
+    }
+  }
+
   createCards(){
     this.cards = this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size);
   }
 
   ngOnInit(): void {
     ExploreComponent.exploreComponent = this;
-
   }
 
   removeCardWithAnimation(elRef : ElementRef){
