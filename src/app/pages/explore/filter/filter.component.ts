@@ -9,6 +9,8 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {ExploreComponent} from "../explore.component";
+import {CardCreationService} from "../../../services/card-creation.service";
+import {filter} from "rxjs";
 
 
 
@@ -62,7 +64,7 @@ export class FilterComponent implements OnInit {
     "Militär"
   ]
 
-  constructor() { }
+  constructor(private cardCreationService : CardCreationService) { }
 
   ngOnInit(): void {
     ExploreComponent.exploreComponent.filterExtended = this.extended;
@@ -74,12 +76,20 @@ export class FilterComponent implements OnInit {
     ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
 
-  checkboxClicked(checkedBoxContainer : ElementRef, uncheckedBoxContainer : ElementRef, event : any){
+  checkboxClicked(checkedBoxContainer : ElementRef, uncheckedBoxContainer : ElementRef, filter : string, event : any){
+    let input = event.currentTarget;
     let boxContainer = event.currentTarget.parentElement;
+    this.addCheckboxFilter(filter, input.id.replace("kind_box_", "").replace("utili_box_", ""), input.checked);
+
     if(event.currentTarget.checked) return checkedBoxContainer.nativeElement.appendChild(boxContainer);
 
     let index = boxContainer.getAttribute("placeholderfor");
     uncheckedBoxContainer.nativeElement.children[index].appendChild(boxContainer);
+  }
+
+  addCheckboxFilter(filterName : string, filterValue : any, filterState : boolean){
+    if(filterState) return this.cardCreationService.appendFilter(filterName, filterValue);
+    this.cardCreationService.spliceFilter(filterName, filterValue);
   }
 
   onRangeInput(){

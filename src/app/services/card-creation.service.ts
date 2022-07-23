@@ -1,6 +1,7 @@
 import {ComponentRef, Injectable, ViewContainerRef} from '@angular/core';
 import {CardComponent} from "../pages/explore/card/card.component";
 import {HttpClient} from "@angular/common/http";
+import {filter} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,19 @@ export class CardCreationService {
 
   setFilter(filterKey : string, filterValue : any){
     this.filters[filterKey] = filterValue;
+  }
+
+  appendFilter(filterKey : string, filterValue : string){
+    let val : string[] = this.filters[filterKey];
+    val.push(filterValue);
+    this.setFilter(filterKey, val);
+  }
+
+  spliceFilter(filterKey : string, filterValue : string){
+    let val : string[] = this.filters[filterKey];
+    const index = val.indexOf(filterValue);
+    if (index > -1) val.splice(index, 1);
+    this.setFilter(filterKey, val);
   }
 
   removeFilter(filterKey : string){

@@ -9,7 +9,7 @@
       <div *ngFor="let val of wortarten; index as i">
         <div class="form-check" id="{{val}}" attr.placeholderfor="{{i}}">
           <input class="form-check-input" type="checkbox" value="" id="kind_box_{{val}}"
-          (click)="checkboxClicked(this.kindCheckedBoxes, this.kindUncheckedBoxes, $event)">
+          (click)="checkboxClicked(this.kindCheckedBoxes, this.kindUncheckedBoxes, 'kind', $event)">
           <label class="form-check-label unselectable" for="kind_box_{{val}}">
             {{val}}
           </label>
@@ -24,7 +24,7 @@
       <div *ngFor="let val of nutzungen; index as i">
         <div class="form-check" id="{{val}}" attr.placeholderfor="{{i}}">
           <input class="form-check-input" type="checkbox" value="" id="utili_box_{{val}}"
-                 (click)="checkboxClicked(this.utiliCheckedBoxes, this.utiliUncheckedBoxes, $event)">
+                 (click)="checkboxClicked(this.utiliCheckedBoxes, this.utiliUncheckedBoxes, 'utilization', $event)">
           <label class="form-check-label unselectable" for="utili_box_{{val}}">
             {{val}}
           </label>
