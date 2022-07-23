@@ -18,11 +18,15 @@ export class CardComponent implements OnInit {
   isDragging: boolean = false;
   index : number = 0;
   elRef : ElementRef;
-  frequencyWhite = Array(3).fill(0).map((x,i)=>i);
-  frequencyGrey = Array(2).fill(0).map((x,i)=>i);
+  frequency : number = 0;
+  frequencyGrey : any = undefined;
+  frequencyWhite : any = undefined;
   synonyms : string[] = ["absonderlich", "ausgefallen", "befremdend", "bizarr"];
   showFront : boolean = true;
   willBeRemoved : boolean = false;
+  kind : string = "";
+  utilization : string = "";
+  description : string = "";
 
 
 
@@ -31,9 +35,19 @@ export class CardComponent implements OnInit {
       this.isTop = true;
     }
 
+
     this.elRef.nativeElement.index = this.index;
     this.elRef.nativeElement.style.zIndex = ExploreComponent.stack_size - this.index;
     this.cardStyleService.resetMargins(this.elRef);
+  }
+
+  createArray(length : number) : any{
+    return Array(length).fill(0).map((x,i)=>i);
+  }
+
+  updateFrequency(){
+    this.frequencyWhite = this.createArray(this.frequency);
+    this.frequencyGrey = this.createArray(5 - this.frequency);
   }
 
 
@@ -50,7 +64,7 @@ export class CardComponent implements OnInit {
       if(this.willBeRemoved) return;
       this.rotateRight = true;
       this.removeAfterTime(300);
-  }
+    }
 
     cardNo(){
       if(this.willBeRemoved) return;

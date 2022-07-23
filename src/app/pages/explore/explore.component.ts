@@ -8,7 +8,7 @@ import {
   ViewContainerRef,
   ViewRef
 } from '@angular/core';
-import {first} from "rxjs";
+
 import {CardComponent} from "./card/card.component";
 import {CardCreationService} from "../../services/card-creation.service";
 import {CardMovementService} from "../../services/card-movement/card-movement.service";
@@ -54,7 +54,7 @@ export class ExploreComponent implements OnInit {
   constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
   createCards(){
-    this.cards = (this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size));
+    this.cards = this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size);
   }
 
   ngOnInit(): void {
