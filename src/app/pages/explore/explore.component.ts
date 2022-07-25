@@ -54,16 +54,12 @@ export class ExploreComponent implements OnInit {
   constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
   async createNewCards(){
-    console.log("new cardis")
-    console.log(this.cards.length);
     this.cards = await this.cardCreationService.createCards(this.createCardsHere, true, ExploreComponent.stack_size);
 
   }
 
   destroyCards(){
-    console.log(this.cards.length);
     const cardis  = Object.assign([], this.cards);
-    console.log("Destroying " + this.cards.length + " cards");
     for(let i = 0; i < cardis.length; i++){
       let card : ComponentRef<CardComponent> = cardis[i];
       this.removeCardFromGlobal(false);

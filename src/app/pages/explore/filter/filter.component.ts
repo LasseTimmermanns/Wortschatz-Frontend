@@ -63,6 +63,12 @@ export class FilterComponent implements OnInit {
     "salopp",
     "Militär"
   ]
+  texts : {} = {
+    5: "Nur die populärsten Wörter",
+    4: "Nur weit verbreitete Wörter",
+    3: "Nur oft benutze Wörter Wörter",
+    2: "Nur zumindest manchmal benutzte Wörter",
+    1: "Alle Wörter"}
 
   constructor(private cardCreationService : CardCreationService) { }
 
@@ -94,15 +100,9 @@ export class FilterComponent implements OnInit {
 
   onRangeInput(){
     let val:number = this.frequencyRange.nativeElement.value;
-    let texts = {
-      5: "Nur die meistbenutzen Wörter",
-      4: "Auch sehr oft benutze Wörter",
-      3: "Auch oft benutzte Wörter",
-      2: "Auch seltener benutze Wörter",
-      1: "Alle Wörter"}
 
     // @ts-ignore
-    this.frequencyRangeText.nativeElement.innerHTML = texts[val];
+    this.frequencyRangeText.nativeElement.innerHTML = this.texts[val];
 
     this.addFrequencyFilter(val);
   }
