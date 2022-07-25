@@ -53,24 +53,26 @@ export class ExploreComponent implements OnInit {
 
   constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
 
-  createNewCards(){
-    if(this.cards.length == 0) {
-      this.createCards();
-    }
-    this.destroyCards();
+  async createNewCards(){
+    console.log("new cardis")
+    console.log(this.cards.length);
+    this.cards = await this.cardCreationService.createCards(this.createCardsHere, true, ExploreComponent.stack_size);
+
   }
 
   destroyCards(){
+    console.log(this.cards.length);
     const cardis  = Object.assign([], this.cards);
+    console.log("Destroying " + this.cards.length + " cards");
     for(let i = 0; i < cardis.length; i++){
       let card : ComponentRef<CardComponent> = cardis[i];
-      this.removeCardFromGlobal();
-      this.removeCardItSelf(card.instance.elRef);
+      this.removeCardFromGlobal(false);
+      this.removeCardItself(card.instance.elRef);
     }
   }
 
-  createCards(){
-    this.cards = this.cardCreationService.createCards(this.createCardsHere, ExploreComponent.stack_size);
+  async createCards(){
+    this.cards = await this.cardCreationService.createCards(this.createCardsHere, false, ExploreComponent.stack_size);
   }
 
   ngOnInit(): void {
@@ -81,23 +83,23 @@ export class ExploreComponent implements OnInit {
     this.renderer.addClass(elRef.nativeElement, "card-disappear");
     ExploreComponent.exploreComponent.removeCardFromGlobal();
     setTimeout(function (){
-      ExploreComponent.exploreComponent.removeCardItSelf(elRef);
+      ExploreComponent.exploreComponent.removeCardItself(elRef);
     }, 1000);
   }
 
-  removeCardFromGlobal(){
+  removeCardFromGlobal(createNew : boolean = true){
     this.cards[0].instance.willBeRemoved = true;
     this.cards.shift();
 
-    if(this.cards.length == 0){
-      this.createCards()
+    if(this.cards.length == 0 && createNew){
+      this.createCards();
       return;
     }
 
-    this.cards[0].instance.isTop = true;
+    if(this.cards.length > 0) this.cards[0].instance.isTop = true;
   }
 
-  removeCardItSelf(elRef : ElementRef){
+  removeCardItself(elRef : ElementRef){
     elRef.nativeElement.remove();
   }
 

@@ -1,7 +1,7 @@
 import {ComponentRef, Injectable, ViewContainerRef} from '@angular/core';
 import {CardComponent} from "../pages/explore/card/card.component";
 import {HttpClient} from "@angular/common/http";
-import {filter} from "rxjs";
+import {filter, lastValueFrom} from "rxjs";
 import {ExploreComponent} from "../pages/explore/explore.component";
 
 @Injectable({
@@ -47,7 +47,7 @@ export class CardCreationService {
   }
 
   removeFilter(filterKey : string){
-    if(this.filtersDefault[filterKey] == null) throw new Error("FILTERKEY NOT FOUND");
+    if(this.filtersDefault[filterKey] == null) throw new Error("FilterKey " + filterKey + " not existing");
     this.filters[filterKey] = this.filtersDefault[filterKey];
     this.filtersUpdated();
   }
@@ -69,18 +69,19 @@ export class CardCreationService {
     return url + firstChar + key + "=" + value;
   }
 
-  createCards(viewContainerRef : ViewContainerRef, limit : number = 5) : ComponentRef<CardComponent>[]{
+  async createCards(viewContainerRef : ViewContainerRef, destroyOld : boolean = true, limit : number = 5) : Promise<ComponentRef<CardComponent>[]>{
 
     let url = this.HOSTNAME + this.FILTER_MAP;
     url = this.applyFilters(url);
     console.log(url);
     let out : ComponentRef<CardComponent>[] = [];
-    this.httpClient.get<any>(url).subscribe(data =>{
-      for(let i = 0; i < data.length; i++){
-        //console.log(data[i]);
-        out.push(this.createCard(viewContainerRef, i, data[i]));
-      }
-    })
+    const req = await lastValueFrom(this.httpClient.get<any>(url));
+
+    if(destroyOld) ExploreComponent.exploreComponent.destroyCards();
+    for(let i = 0; i < req.length; i++){
+      out.push(this.createCard(viewContainerRef, i, req[i]));
+    }
+
     return out;
   }
 
