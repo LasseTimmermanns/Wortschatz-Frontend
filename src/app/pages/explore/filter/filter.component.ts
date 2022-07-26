@@ -11,6 +11,7 @@ import {
 import {ExploreComponent} from "../explore.component";
 import {CardCreationService} from "../../../services/card-creation.service";
 import {filter} from "rxjs";
+import {FilterService} from "../../../services/filter/filter.service";
 
 
 
@@ -34,35 +35,7 @@ export class FilterComponent implements OnInit {
   @ViewChild('frequencyRangeText') frequencyRangeText! : ElementRef;
 
   wortarten : string[] = ["Substantiv", "Verb", "Adjektiv", "Adverb"]
-  nutzungen : string[] = [
-    "umgangssprachlich",
-    "bildungssprachlich",
-    "gehoben",
-    "Medizin",
-    "veraltet",
-    "abwertend",
-    "Sprachwissenschaft",
-    "umgangssprachlich abwertend",
-    "Chemie",
-    "Fachsprache",
-    "Wirtschaft",
-    "Computer",
-    "Technik",
-    "selten",
-    "Biologie",
-    "Rechtssprache",
-    "Physik",
-    "Sport",
-    "früher",
-    "landschaftlich",
-    "Botanik",
-    "Musik",
-    "Mathematik",
-    "Geologie",
-    "Geschichte",
-    "salopp",
-    "Militär"
-  ]
+  nutzungen : any[] = [];
   texts : {} = {
     5: "Nur die populärsten Wörter",
     4: "Nur weit verbreitete Wörter",
@@ -70,10 +43,15 @@ export class FilterComponent implements OnInit {
     2: "Nur zumindest manchmal benutzte Wörter",
     1: "Alle Wörter"}
 
-  constructor(private cardCreationService : CardCreationService) { }
+  constructor(private cardCreationService : CardCreationService, private filterService : FilterService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     ExploreComponent.exploreComponent.filterExtended = this.extended;
+
+    this.nutzungen = await this.filterService.getUtilizations();
+
+    console.log(this.nutzungen[0].count)
+
   }
 
   changeExtended(){

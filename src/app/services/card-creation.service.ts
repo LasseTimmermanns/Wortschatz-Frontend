@@ -73,7 +73,6 @@ export class CardCreationService {
 
     let url = this.HOSTNAME + this.FILTER_MAP;
     url = this.applyFilters(url);
-    console.log(url);
     let out : ComponentRef<CardComponent>[] = [];
     const req = await lastValueFrom(this.httpClient.get<any>(url));
 
