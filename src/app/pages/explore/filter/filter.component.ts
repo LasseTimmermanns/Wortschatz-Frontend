@@ -49,9 +49,6 @@ export class FilterComponent implements OnInit {
     ExploreComponent.exploreComponent.filterExtended = this.extended;
 
     this.nutzungen = await this.filterService.getUtilizations();
-
-    console.log(this.nutzungen[0].count)
-
   }
 
   changeExtended(){
