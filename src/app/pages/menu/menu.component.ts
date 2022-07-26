@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  pages = [
+    {name: "Explore", img: "explore_stroke.svg", routerLink: "#"},
+    {name: "Learn", img: "learn_stroke.svg", routerLink: "#"},
+    {name: "Manage", img: "manage_stroke.svg", routerLink: "#"},
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

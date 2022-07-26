@@ -34,6 +34,8 @@ export class FilterComponent implements OnInit {
   @ViewChild('frequencyRange') frequencyRange! : ElementRef;
   @ViewChild('frequencyRangeText') frequencyRangeText! : ElementRef;
 
+  public static filterComponent : FilterComponent;
+
   wortarten : string[] = ["Substantiv", "Verb", "Adjektiv", "Adverb"]
   nutzungen : any[] = [];
   texts : {} = {
@@ -46,6 +48,7 @@ export class FilterComponent implements OnInit {
   constructor(private cardCreationService : CardCreationService, private filterService : FilterService) { }
 
   async ngOnInit() {
+    FilterComponent.filterComponent = this;
     ExploreComponent.exploreComponent.filterExtended = this.extended;
 
     this.nutzungen = await this.filterService.getUtilizations();
@@ -54,6 +57,12 @@ export class FilterComponent implements OnInit {
   changeExtended(){
     this.extended = !this.extended;
     this.retracted = !this.retracted;
+    ExploreComponent.exploreComponent.filterExtended = this.extended;
+  }
+
+  retract(){
+    this.extended = false;
+    this.retracted = true;
     ExploreComponent.exploreComponent.filterExtended = this.extended;
   }
 

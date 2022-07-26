@@ -1,0 +1,15 @@
+<div class="menu">
+  <ul>
+    <li class="nav-item" *ngFor="let val of pages">
+      <a routerLink="{{val.routerLink}}">
+        <div class="menu-img-wrapper">
+          <img src="assets/img/nav/{{val.img}}">
+        </div>
+
+        <div class="menu-text-wrapper">
+          {{val.name}}
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

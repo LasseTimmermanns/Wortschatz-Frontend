@@ -12,6 +12,7 @@ import {
 import {CardComponent} from "./card/card.component";
 import {CardCreationService} from "../../services/card-creation.service";
 import {CardMovementService} from "../../services/card-movement/card-movement.service";
+import {FilterComponent} from "./filter/filter.component";
 
 @Component({
   selector: 'app-explore',
