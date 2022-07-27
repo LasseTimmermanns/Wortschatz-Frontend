@@ -9,6 +9,8 @@ import { ExploreComponent } from './pages/explore/explore.component';
 import { CardComponent } from './pages/explore/card/card.component';
 import {RouterModule, Routes} from "@angular/router";
 import { FilterComponent } from './pages/explore/filter/filter.component';
+import { LoginComponent } from './pages/menu/login/login.component';
+import {FormsModule} from "@angular/forms";
 
 const allRoutes: Routes = [
   {path: "", component: ExploreComponent},
@@ -21,14 +23,16 @@ const allRoutes: Routes = [
     MenuComponent,
     ExploreComponent,
     CardComponent,
-    FilterComponent
+    FilterComponent,
+    LoginComponent
   ],
-  imports: [
-    RouterModule.forRoot(allRoutes),
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+    imports: [
+        RouterModule.forRoot(allRoutes),
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

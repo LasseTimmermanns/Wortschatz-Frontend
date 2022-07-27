@@ -1,14 +1,24 @@
-<form #userlogin="ngForm" (ngSubmit)= "onSubmit($event.submitter.id, userlogin.value)">
+<form #userlogin="ngForm" (ngSubmit)= "onSubmit($event.submitter.id, userlogin.value)" *ngIf="!username">
   <div>
     <label for="username_input">Benutzername</label>
-    <input type="text" id="username_input" name="username_input" ngModel>
+    <input type="text" id="username_input" name="username_input" autocomplete="off" (keyup.enter)="gotoPassword()" ngModel>
+    <input type="submit" id="none" disabled style="display: none" aria-hidden="true">
   </div>
   <div>
     <label for="password_input">Passwort</label>
-    <input type="text" id="password_input" name="password_input" ngModel>
+    <input type="text" id="password_input" name="password_input" autocomplete="off" ngModel #password_input>
   </div>
   <div class="login-button-section">
-    <input type="submit" value="Registrieren" id="register">
     <input type="submit" value="Einloggen" id="login">
+    <input type="submit" value="Registrieren" id="register">
   </div>
 </form>
+
+<div class="user-display" *ngIf="username">
+  <div>
+    <p>Eingeloggt als <span class="username-display">{{username}}</span></p>
+  </div>
+  <div class="logout-container" (click)="logout()">
+    <img src="assets/img/nav/logout_stroke.svg">
+  </div>
+</div>
