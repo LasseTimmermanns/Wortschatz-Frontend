@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewRef} from '@angular/core';
+import {Component, HostBinding, OnInit, ViewChild, ViewRef} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 
@@ -10,8 +10,10 @@ import {firstValueFrom} from "rxjs";
 export class LoginComponent implements OnInit {
 
   @ViewChild('password_input') password_input : any;
+  @ViewChild('switchMarker') switchMarker : any;
 
   username : string = "";
+  loginFormActive : boolean = true;
 
 
   constructor(private httpClient : HttpClient) { }
@@ -54,6 +56,14 @@ export class LoginComponent implements OnInit {
 
   view_password(){
     this.password_input.nativeElement.type = this.password_input.nativeElement.type == "text" ? "password" : "text";
+  }
+
+  switch_forms(){
+    this.loginFormActive = !this.loginFormActive;
+    this.switchMarker.nativeElement.innerHTML = "";
+
+    this.switchMarker.nativeElement.innerHTML = this.loginFormActive ? "Einloggen" : "Registrieren";
+
   }
 
 }

@@ -32,6 +32,38 @@
   font-family: "Open Sans";
 }
 
+.switch{
+  background-color: var(--secondary);
+  width: 100%;
+  height: var(--switch-height);
+  border-radius: 100vh;
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.switch div{
+  text-align: center;
+  content: "";
+  background-color: #161925;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  position: absolute;
+  border-radius: 100vh;
+  transition: all 0.4s cubic-bezier(.23,.3,.49,1);
+}
+
+.right{
+  left: calc(100% - 70%);
+}
+
+.left{
+  left: 0;
+}
+
 form{
   width: 100%;
   height: 100%;
@@ -45,23 +77,30 @@ label{
 }
 
 input{
-  background: var(--background-color);
   border: 0;
   width: 100%;
-  color: black;
+  color: white;
 }
 
 input[type="text"], input[type="password"]{
-  background: var(--background-color);
+  background: var(--dark);
   border: 0;
   height: var(--login-input-height);
+  border-radius: 10px;
 }
 
 .login-button-section{
   width: 100%;
   display: flex;
-  margin-top: 5px;
-  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.login-button-section input{
+  width: 60%;
+  border-radius: 10px;
+  height: var(--login-input-height);
+  background-color: var(--cta);
 }
 
 .login-password-show{
@@ -69,7 +108,7 @@ input[type="text"], input[type="password"]{
   margin-left: -30px;
   display: inline-flex;
   height: var(--login-input-height);
-  width: calc(var(--login-input-height) - 6px);
+  width: calc(var(--login-input-height) - 16px);
 }
 
 .login-password-show img{
