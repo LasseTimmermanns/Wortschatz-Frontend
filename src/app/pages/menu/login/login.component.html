@@ -6,7 +6,8 @@
   </div>
   <div>
     <label for="password_input">Passwort</label>
-    <input type="text" id="password_input" name="password_input" autocomplete="off" ngModel #password_input>
+    <input type="password" id="password_input" name="password_input" autocomplete="off" ngModel #password_input>
+    <div class="login-password-show" (click)="view_password()"><img src="assets/img/nav/show_password_stroke.svg"></div>
   </div>
   <div class="login-button-section">
     <input type="submit" value="Einloggen" id="login">

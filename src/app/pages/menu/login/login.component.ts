@@ -52,4 +52,8 @@ export class LoginComponent implements OnInit {
     this.password_input.nativeElement.select();
   }
 
+  view_password(){
+    this.password_input.nativeElement.type = this.password_input.nativeElement.type == "text" ? "password" : "text";
+  }
+
 }
