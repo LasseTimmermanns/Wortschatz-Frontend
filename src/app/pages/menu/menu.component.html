@@ -1,3 +1,7 @@
+<div class="menu-extender" (pointerdown)="changeMenuRetracted()">
+  <img [src]="retracted ? 'assets/img/nav/arrow_right.svg' : 'assets/img/nav/arrow_left.svg'">
+</div>
+
 <div class="menu">
   <ul>
     <li class="nav-item" *ngFor="let val of pages">
@@ -12,4 +16,4 @@
     </li>
   </ul>
 </div>
-<app-login></app-login>
+<app-login *ngIf="!retracted"></app-login>

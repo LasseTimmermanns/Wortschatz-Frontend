@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+  @HostBinding('class.menu-retracted') retracted: boolean = false;
 
   pages = [
     {name: "Explore", img: "explore_stroke.svg", routerLink: "#"},
@@ -16,6 +18,10 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeMenuRetracted(){
+    this.retracted = !this.retracted;
   }
 
 }
