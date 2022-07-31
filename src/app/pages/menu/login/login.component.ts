@@ -11,22 +11,25 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('password_input') password_input : any;
   @ViewChild('switchMarker') switchMarker : any;
+  @ViewChild('loginResponse') loginResponse : any;
 
   username : string = "";
   loginFormActive : boolean = true;
+  response_status_success : boolean = true;
 
+  public static loginComponent : LoginComponent;
 
   constructor(private httpClient : HttpClient) { }
 
   ngOnInit(): void {
+    LoginComponent.loginComponent = this;
   }
 
   logout(){
     this.username = "";
   }
 
-  async onSubmit(action : string, data : any){
-    console.log(action);
+  async onSubmit(data : any){
     let body = new URLSearchParams();
     body.set('username', data.username_input);
     body.set('password', data.password_input);
@@ -35,19 +38,21 @@ export class LoginComponent implements OnInit {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    let url = "http://localhost:8080/login/" + action;
+    let url = "http://localhost:8080/login/" + (this.loginFormActive ? "login" : "register");
     this.httpClient.post<any>(url, body.toString(), options).subscribe(data => {
-        console.log("success");
         this.username = data.username;
       },
       err => {
-        console.log("error");
+        this.show_error(err);
       },
-      () => {
-        console.log("ende");
-      });
+      () => {});
 
     //console.log(request.message);
+  }
+
+
+  show_error(data : any){
+    LoginComponent.loginComponent.show_message(data.error.display_message, false);
   }
 
   gotoPassword(){
@@ -59,11 +64,16 @@ export class LoginComponent implements OnInit {
   }
 
   switch_forms(){
+    this.loginResponse.nativeElement.innerHTML = "";
     this.loginFormActive = !this.loginFormActive;
     this.switchMarker.nativeElement.innerHTML = "";
 
     this.switchMarker.nativeElement.innerHTML = this.loginFormActive ? "Einloggen" : "Registrieren";
+  }
 
+  show_message(message : string, status_success : boolean){
+    this.response_status_success = status_success;
+    this.loginResponse.nativeElement.innerHTML = message;
   }
 
 }
