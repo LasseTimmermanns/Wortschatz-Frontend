@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 
 @Component({
@@ -8,21 +8,24 @@ import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angu
 })
 export class GoogleLoginComponent implements OnInit {
 
+  @Input("retracted") retracted : boolean = false;
   user: SocialUser | undefined;
-  GoogleLoginProvider = GoogleLoginProvider;
-  @ViewChild("loginButton") loginButton : ElementRef | undefined;
 
   constructor(private readonly _authService: SocialAuthService) {}
 
   ngOnInit() {
     this._authService.authState.subscribe((user) => {
       this.user = user;
-      console.log(this.user);
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes[0]){
+      this.retracted = changes[0].currentValue;
+    }
+  }
+
   signOut(): void {
-    this.user = undefined;
     this._authService.signOut();
   }
 }
