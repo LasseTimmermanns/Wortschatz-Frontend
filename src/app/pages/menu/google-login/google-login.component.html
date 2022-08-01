@@ -1,0 +1,10 @@
+<div *ngIf="!user" id="login-button-container">
+  <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+</div>
+<div *ngIf="user" id="logged-in-container">
+  <img src="{{user.photoUrl}}">
+  <p>{{user.name}}</p>
+  <img src="assets/img/nav/logout_stroke.svg" (click)="signOut()">
+  <!--<img src="assets/img/bloons_logo.jpg">
+  <p>Essen</p>-->
+</div>
