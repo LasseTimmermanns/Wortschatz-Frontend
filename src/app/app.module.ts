@@ -15,6 +15,7 @@ SocialLoginModule,
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginComponent } from './pages/menu/google-login/google-login.component';
+import {CookieService} from "./services/cookie/cookie.service";
 
 const allRoutes: Routes = [
   {path: "", component: ExploreComponent},
@@ -39,7 +40,7 @@ const allRoutes: Routes = [
     FormsModule,
     SocialLoginModule
   ],
-  providers: [
+  providers: [CookieService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
