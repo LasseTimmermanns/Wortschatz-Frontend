@@ -12,7 +12,7 @@ import {ExploreComponent} from "../pages/explore/explore.component";
 export class CardCreationService {
 
   HOSTNAME : string = "http://localhost:8080/api";
-  FILTER_MAP : string = "/getWords";
+  FILTER_MAP : string = "/get/words";
   FILTER_KIND : string = "kind";
   FILTER_UTILIZATION : string = "utilization";
   FILTER_FREQUENCY : string = "frequency";
@@ -97,19 +97,6 @@ export class CardCreationService {
     component.instance.updateFrequency();
     return component;
   }
-
-
-
-/*
-  createCards(viewContainerRef : ViewContainerRef, stack_size: number) : ComponentRef<CardComponent>[]{
-    let out : ComponentRef<CardComponent>[] = [];
-
-    for(let i = 0; i < stack_size; i++){
-      out.push(this.createCard(viewContainerRef, i, "skurril"))
-    }
-
-    return out;
-  }*/
 
 
 }

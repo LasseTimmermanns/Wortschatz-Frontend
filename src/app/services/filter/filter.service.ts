@@ -10,7 +10,7 @@ export class FilterService {
   constructor(private httpClient : HttpClient) { }
 
   async getUtilizations(limit : number = 200){
-    const req = await lastValueFrom(this.httpClient.get<any>("http://localhost:8080/api/utilization?limit=" + limit));
+    const req = await lastValueFrom(this.httpClient.get<any>("http://localhost:8080/api/get/utilization?limit=" + limit));
     let out = [];
     for(let i = 0; i < req.length; i++){
       out.push(req[i]);

@@ -22,11 +22,11 @@
     <div #utilizationChecked class="checked-container"></div>
     <div #utilizationUnchecked class="checkbox-container">
         <div *ngFor="let val of nutzungen; index as i">
-          <div class="form-check" id="{{val.utilization}}" attr.placeholderfor="{{i}}">
-            <input class="form-check-input" type="checkbox" value="" id="utili_box_{{val.utilization}}"
+          <div class="form-check" id="{{val.name}}" attr.placeholderfor="{{i}}">
+            <input class="form-check-input" type="checkbox" value="" id="utili_box_{{val.name}}"
                    (click)="checkboxClicked(this.utiliCheckedBoxes, this.utiliUncheckedBoxes, 'utilization', $event)">
-            <label class="form-check-label unselectable" for="utili_box_{{val.utilization}}">
-              {{val.utilization}} ({{val.count}})
+            <label class="form-check-label unselectable" for="utili_box_{{val.name}}">
+              {{val.name}} ({{val.count}})
             </label>
         </div>
       </div>
