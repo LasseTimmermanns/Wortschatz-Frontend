@@ -1,0 +1,25 @@
+:host{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+:host *{
+  width: 100%;
+  height: 100%;
+}
+
+span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--dark);
+  transition: all 0.2s;
+}
+
+span.active{
+  background-color: var(--secondary);
+  width: 150%;
+}

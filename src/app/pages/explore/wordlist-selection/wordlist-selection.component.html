@@ -1,0 +1,6 @@
+<span *ngFor="let val of lists; let indexOfelement=index;"
+      [attr.index]="indexOfelement"
+      (pointerdown)="spanClick($event)"
+      [ngClass]="val.active ? 'active' : ''">
+  {{val.name}}
+</span>

@@ -13,3 +13,10 @@
 .card-wrapper-on-extend{
   width: calc(100% - 300px);
 }
+
+app-wordlist-selection{
+  position: absolute;
+  top: 0px;
+  height: 50px;
+  width: 100%;
+}
