@@ -22,11 +22,9 @@ export class GoogleLoginComponent implements OnInit {
       if(user){
         this.loginService.generateSession(user.idToken)
           .then(res => WordlistSelectionComponent.wordlistSelectionComponent.generateWordlists());
-
       }else{
         this.loginService.removeSession();
         WordlistSelectionComponent.wordlistSelectionComponent.removeWordlists();
-
       }
     });
   }
