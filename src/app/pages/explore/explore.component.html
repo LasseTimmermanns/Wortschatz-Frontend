@@ -1,5 +1,8 @@
 <app-filter></app-filter>
-<div class="card-wrapper" #cardWrapper [ngClass]="{'card-wrapper-on-extend' : filterExtended}">
+<div class="card-wrapper" #cardWrapper
+     [ngClass]="{'card-wrapper-on-extend' : filterExtended,
+                'card-adding' : cardAdding,
+                 'card-removing' : cardRemoving}">
   <app-wordlist-selection></app-wordlist-selection>
   <div #createCardsHere style="display: none;"></div>
   <!--<app-card *ngFor="let card of cards; let indexOfelement=index;" (pointerdown)="cardPressing($event)"></app-card>

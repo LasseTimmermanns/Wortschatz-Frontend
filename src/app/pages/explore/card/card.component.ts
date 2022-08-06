@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, O
 import {CardMovementService} from "../../../services/card-movement/card-movement.service";
 import {CardStyleService} from "../../../services/card-style/card-style.service";
 import {ExploreComponent} from "../explore.component";
+import {WordAddService} from "../../../services/add-word/word-add.service";
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,7 @@ export class CardComponent implements OnInit {
   @HostBinding('class.rotate-right-animation') rotateRight: boolean = false;
 
   isTop: boolean = true;
-  word : String = "skurril";
+  word : string = "skurril";
   isDragging: boolean = false;
   index : number = 0;
   elRef : ElementRef;
@@ -51,7 +52,10 @@ export class CardComponent implements OnInit {
   }
 
 
-  constructor(private elRefConstructor:ElementRef, private cardMovementService : CardMovementService, private cardStyleService : CardStyleService) {
+  constructor(private elRefConstructor:ElementRef,
+              private cardMovementService : CardMovementService,
+              private cardStyleService : CardStyleService,
+              private wordAddService : WordAddService) {
     this.elRef = elRefConstructor;
   }
 
@@ -61,12 +65,23 @@ export class CardComponent implements OnInit {
     }
 
     cardYes(){
+      this.addToSelectedWordlists();
       if(this.willBeRemoved) return;
       this.rotateRight = true;
       this.removeAfterTime(300);
     }
 
+    addToSelectedWordlists(){
+      this.wordAddService.addWord(this.word);
+      ExploreComponent.exploreComponent.cardAdded();
+    }
+
+    notPicked(){
+      ExploreComponent.exploreComponent.cardRemoved();
+    }
+
     cardNo(){
+      this.notPicked();
       if(this.willBeRemoved) return;
       this.rotateLeft = true;
       this.removeAfterTime(300);

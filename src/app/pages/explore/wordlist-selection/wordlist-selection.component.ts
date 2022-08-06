@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {WordAddService} from "../../../services/add-word/word-add.service";
+import {WordlistCreatorService} from "../../../services/wordlists-creator/wordlist-creator.service";
 
 @Component({
   selector: 'app-wordlist-selection',
@@ -7,20 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WordlistSelectionComponent implements OnInit {
 
-  lists = [
-    {name: "my wordlist", id: "3741892", active: false},
-    {name: "my wordlist", id: "3741892", active: false},
-    {name: "my wordlist", id: "3741892", active: false}
-  ]
+  public static wordlistSelectionComponent : WordlistSelectionComponent;
 
-  constructor() { }
+  lists : any = []
+
+  constructor(private wordAddService : WordAddService, private wordlistCreator : WordlistCreatorService) {}
 
   ngOnInit(): void {
+    WordlistSelectionComponent.wordlistSelectionComponent = this;
+    this.generateWordlists();
   }
 
   spanClick(event : any){
     let index = event.currentTarget.getAttribute("index");
     this.lists[index].active = !this.lists[index].active;
+    let wordlistId = this.lists[index].id;
+
+    this.lists[index].active ? this.wordAddService.addToWordlists(wordlistId) : this.wordAddService.removeFromWordlists(wordlistId);
+  }
+
+  async generateWordlists(){
+    this.lists = await this.wordlistCreator.getWordlists();
+    console.log(this.lists);
+  }
+
+  removeWordlists(){
+    this.lists = [];
   }
 
 

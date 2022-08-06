@@ -36,8 +36,9 @@ export class CardMovementService {
     card.lastY = event.pageY;
   }
 
-  releaseCard(elRef : ElementRef, event : any){
+  releaseCard(compRef : ComponentRef<CardComponent>, event : any){
     event.preventDefault();
+    let elRef = compRef.instance.elRef;
     let card = elRef.nativeElement;
 
     card.isDragging = false;
@@ -46,8 +47,16 @@ export class CardMovementService {
     if(rotation < 5 && rotation > -5){
       this.cardStyleService.rotate(elRef,0);
       this.cardStyleService.resetMargins(elRef);
-    }else{
-      ExploreComponent.exploreComponent.removeCardWithAnimation(elRef);
+      return;
     }
+
+    if(rotation > 5){
+      compRef.instance.addToSelectedWordlists();
+    }
+
+    rotation > 5 ? compRef.instance.addToSelectedWordlists() : compRef.instance.notPicked()
+
+    ExploreComponent.exploreComponent.removeCardWithAnimation(elRef);
+
   }
 }

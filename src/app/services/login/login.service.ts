@@ -31,6 +31,11 @@ export class LoginService {
     this.cookieService.setCookie({name: "sessionToken", value: request.session_token});
     this.cookieService.setCookie({name: "sessionIat", value: request.session_iat});
     this.cookieService.setCookie({name: "sessionExp", value: request.session_exp});
+  }
 
+  removeSession(){
+    this.cookieService.deleteCookie("sessionToken");
+    this.cookieService.deleteCookie("sessionIat");
+    this.cookieService.deleteCookie("sessionExp");
   }
 }

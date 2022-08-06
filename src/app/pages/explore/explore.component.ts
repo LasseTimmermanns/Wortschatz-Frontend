@@ -22,6 +22,8 @@ import {FilterComponent} from "./filter/filter.component";
 export class ExploreComponent implements OnInit {
 
   filterExtended = false;
+  cardAdding = false;
+  cardRemoving = false;
   public static stack_size : number = 5;
   public static exploreComponent: ExploreComponent;
   @ViewChild('createCardsHere', {read: ViewContainerRef}) createCardsHere! : ViewContainerRef;
@@ -35,8 +37,7 @@ export class ExploreComponent implements OnInit {
   releaseCard(){
     if(this.cards.length < 1) return;
     let compRef : ComponentRef<CardComponent> = this.cards[0];
-    let elRef : ElementRef = compRef.instance.elRef;
-    this.cardMovementService.releaseCard(elRef, event)
+    this.cardMovementService.releaseCard(compRef, event)
   }
 
   ngAfterViewInit() : void{
@@ -98,6 +99,20 @@ export class ExploreComponent implements OnInit {
 
   removeCardItself(elRef : ElementRef){
     elRef.nativeElement.remove();
+  }
+
+  cardAdded(){
+    this.cardAdding = true;
+    setTimeout(() => {
+      this.cardAdding = false;
+    }, 350)
+  }
+
+  cardRemoved(){
+    this.cardRemoving = true;
+    setTimeout(() => {
+      this.cardRemoving = false;
+    }, 350)
   }
 
 

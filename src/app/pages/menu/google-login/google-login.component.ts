@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@a
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {CookieService} from "../../../services/cookie/cookie.service";
 import {LoginService} from "../../../services/login/login.service";
+import {WordlistSelectionComponent} from "../../explore/wordlist-selection/wordlist-selection.component";
 
 @Component({
   selector: 'app-google-login',
@@ -19,7 +20,13 @@ export class GoogleLoginComponent implements OnInit {
     this._authService.authState.subscribe((user) => {
       this.user = user;
       if(user){
-        this.loginService.generateSession(user.idToken);
+        this.loginService.generateSession(user.idToken)
+          .then(res => WordlistSelectionComponent.wordlistSelectionComponent.generateWordlists());
+
+      }else{
+        this.loginService.removeSession();
+        WordlistSelectionComponent.wordlistSelectionComponent.removeWordlists();
+
       }
     });
   }

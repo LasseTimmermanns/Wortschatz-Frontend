@@ -8,6 +8,7 @@
   height: 100%;
   position: relative;
   transition: width 0.3s linear;
+  transition: background-color 0.25s linear;
 }
 
 .card-wrapper-on-extend{
@@ -19,4 +20,12 @@ app-wordlist-selection{
   top: 0px;
   height: 50px;
   width: 100%;
+}
+
+.card-adding{
+  background-color: var(--success);
+}
+
+.card-removing{
+  background-color: var(--danger);
 }

@@ -5,6 +5,14 @@ import { Injectable } from '@angular/core';
 export class CookieService {
   constructor() {}
 
+  public getToken(){
+    let time : number = new Date().getTime();
+    let exp : number = +this.getCookie("sessionExp");
+    if(exp > time) return this.getCookie("sessionToken");
+
+    console.log("Token expired");
+    return;
+  }
 
   public getCookie(name: string) {
     let ca: Array<string> = document.cookie.split(';');
