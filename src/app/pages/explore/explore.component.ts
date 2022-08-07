@@ -13,6 +13,7 @@ import {CardComponent} from "./card/card.component";
 import {CardCreationService} from "../../services/card-creation.service";
 import {CardMovementService} from "../../services/card-movement/card-movement.service";
 import {FilterComponent} from "./filter/filter.component";
+import {GoogleLoginComponent} from "../menu/google-login/google-login.component";
 
 @Component({
   selector: 'app-explore',
@@ -57,7 +58,10 @@ export class ExploreComponent implements OnInit {
 
   async createNewCards(){
     this.cards = await this.cardCreationService.createCards(this.createCardsHere, true, ExploreComponent.stack_size);
+  }
 
+  loggedIn() : boolean{
+    return GoogleLoginComponent.loggedIn;
   }
 
   destroyCards(){

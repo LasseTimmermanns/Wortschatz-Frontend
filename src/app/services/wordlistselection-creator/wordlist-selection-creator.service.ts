@@ -6,7 +6,7 @@ import {CookieService} from "../cookie/cookie.service";
 @Injectable({
   providedIn: 'root'
 })
-export class WordlistCreatorService {
+export class WordlistSelectionCreatorService {
 
   constructor(private cookieService : CookieService, private httpClient : HttpClient) { }
 

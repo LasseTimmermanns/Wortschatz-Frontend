@@ -19,7 +19,30 @@ span{
   transition: all 0.2s;
 }
 
-span.active{
+span.selected{
   background-color: var(--secondary);
   width: 150%;
+}
+
+.create-wordlist{
+  border-radius: 20%;
+  margin-left: 1px;
+  width: var(--wordlist-selection-height);
+  height: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: var(--cta);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-wordlist:hover{
+  background-color: var(--cta-hover);
+}
+
+.create-wordlist img{
+  margin: 0;
+  width: 80%;
+  height: 80%;
 }

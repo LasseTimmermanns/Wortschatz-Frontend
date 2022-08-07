@@ -1,4 +1,5 @@
 :host{
+  pointer-events: none;
   z-index: 1000;
   transition: right 0.3s linear;
   position: fixed;
@@ -13,6 +14,10 @@
     "button menu"
     "space2 menu";
   }
+
+:host *{
+  pointer-events: auto;
+}
 
 .checkbox-container, .checked-container{
   width: 100%;

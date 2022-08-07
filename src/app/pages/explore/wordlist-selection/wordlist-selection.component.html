@@ -1,6 +1,7 @@
 <span *ngFor="let val of lists; let indexOfelement=index;"
       [attr.index]="indexOfelement"
       (pointerdown)="spanClick($event)"
-      [ngClass]="val.active ? 'active' : ''">
+      [ngClass]="val.selected ? 'selected' : ''">
   {{val.name}}
 </span>
+<div class="create-wordlist" (pointerdown)="createWordlist()"><img src="assets/img/add.svg"></div>

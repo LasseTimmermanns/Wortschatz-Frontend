@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {WordAddService} from "../../../services/add-word/word-add.service";
-import {WordlistCreatorService} from "../../../services/wordlists-creator/wordlist-creator.service";
+import {WordlistSelectionCreatorService} from "../../../services/wordlistselection-creator/wordlist-selection-creator.service";
+import {WordlistService} from "../../../services/wordlist/wordlist.service";
 
 @Component({
   selector: 'app-wordlist-selection',
@@ -13,7 +14,9 @@ export class WordlistSelectionComponent implements OnInit {
 
   lists : any = []
 
-  constructor(private wordAddService : WordAddService, private wordlistCreator : WordlistCreatorService) {}
+  constructor(private wordAddService : WordAddService,
+              private wordlistSelectionCreator : WordlistSelectionCreatorService,
+              private wordlistService : WordlistService) {}
 
   ngOnInit(): void {
     WordlistSelectionComponent.wordlistSelectionComponent = this;
@@ -22,19 +25,22 @@ export class WordlistSelectionComponent implements OnInit {
 
   spanClick(event : any){
     let index = event.currentTarget.getAttribute("index");
-    this.lists[index].active = !this.lists[index].active;
+    this.lists[index].selected = !this.lists[index].selected;
     let wordlistId = this.lists[index].id;
 
-    this.lists[index].active ? this.wordAddService.addToWordlists(wordlistId) : this.wordAddService.removeFromWordlists(wordlistId);
+    this.lists[index].selected ? this.wordAddService.addToWordlists(wordlistId) : this.wordAddService.removeFromWordlists(wordlistId);
   }
 
   async generateWordlists(){
-    this.lists = await this.wordlistCreator.getWordlists();
-    console.log(this.lists);
+    this.lists = await this.wordlistSelectionCreator.getWordlists();
   }
 
   removeWordlists(){
     this.lists = [];
+  }
+
+  createWordlist(){
+    this.wordlistService.createWordlist();
   }
 
 
