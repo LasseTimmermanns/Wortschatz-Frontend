@@ -3,6 +3,7 @@
   height: 100%;
   width: 100%;
   color: white;
+  flex-wrap: nowrap;
 }
 
 :host *{
@@ -17,6 +18,10 @@ span{
   text-align: center;
   background-color: var(--dark);
   transition: all 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 span.selected{
