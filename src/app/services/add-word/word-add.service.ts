@@ -9,7 +9,7 @@ import {firstValueFrom} from "rxjs";
 export class WordAddService {
 
   lists: string[] = [];
-  url = "http://localhost:8080/api/put/word";
+  url = "http://localhost:8080/api/update/word";
 
   constructor(private httpClient : HttpClient, private cookieService : CookieService) { }
 
