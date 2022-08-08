@@ -25,7 +25,7 @@ span.selected{
 }
 
 .create-wordlist{
-  border-radius: 20%;
+  border-radius: calc(var(--wordlist-selection-height) / 10);
   margin-left: 1px;
   width: var(--wordlist-selection-height);
   height: 100%;
@@ -45,4 +45,12 @@ span.selected{
   margin: 0;
   width: 80%;
   height: 80%;
+}
+
+.full-width{
+  flex-grow: 1 !important;
+}
+
+span + span {
+  border-left: solid 2px var(--light);
 }
