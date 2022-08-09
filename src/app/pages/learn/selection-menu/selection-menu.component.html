@@ -1,4 +1,4 @@
 <div class="name-div">{{title}}</div>
-<div class="wordlist-wrapper">
+<div class="wordlist-wrapper" (wheel)="horizontalScroll($event)">
   <app-wordlist *ngFor="let val of myarr"></app-wordlist>
 </div>

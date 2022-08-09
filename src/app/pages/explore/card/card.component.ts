@@ -60,9 +60,9 @@ export class CardComponent implements OnInit {
   }
 
   @HostListener('pointerdown', ['$event'])
-    cardPressing(event: any){
-      this.cardMovementService.pressCard(this.elRef, event);
-    }
+  cardPressing(event: any){
+    this.cardMovementService.pressCard(this.elRef, event);
+  }
 
     cardYes(){
       this.addToSelectedWordlists();
