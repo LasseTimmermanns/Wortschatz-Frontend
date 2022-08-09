@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-wordlist',
@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WordlistComponent implements OnInit {
 
-  title: string = "Wordlist 1";
-  words: string[] = ["Hund", "Katze", "Maus", "geht", "raus", "aus", "meinem", "Haus", "!"];
+  @Input("title") title : string = "Wordlist 1";
+  @Input("id") id : string = "NO ID";
+  @Input("words") words : string[] = [];
 
   constructor() { }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "../cookie/cookie.service";
 import {firstValueFrom} from "rxjs";
-import {WordlistSelectionComponent} from "../../pages/explore/wordlist-selection/wordlist-selection.component";
+import {WordlistSelectionComponent} from "../../../pages/explore/wordlist-selection/wordlist-selection.component";
 
 @Injectable({
   providedIn: 'root'

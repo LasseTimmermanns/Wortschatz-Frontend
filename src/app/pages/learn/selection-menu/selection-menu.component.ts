@@ -1,4 +1,6 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {WordlistRequestService} from "../../../services/learn/Wordlist-Request/wordlist-request.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-selection-menu',
@@ -7,16 +9,24 @@ import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 })
 export class SelectionMenuComponent implements OnInit {
 
-  title: string = "no title";
-  myarr: number[] = [1,2,3,4,5,6,7,8,9,10];
+  @Input("fillmethod") fillMethod : string = "anyuser";
+  @Input("title") title: string = "no title";
+  myarr: any[] = [];
 
   horizontalScroll(event : any){
     event.currentTarget.scrollLeft += event.deltaY / 2;
   }
 
-  constructor() { }
+  constructor(private wordlistRequestService : WordlistRequestService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    //this.myarr = await this.wordlistRequestService.getAnyWordlists();
+    this.fillWithContent();
+  }
+
+  async fillWithContent(){
+    this.myarr = await this.wordlistRequestService.getWordlists(this.fillMethod);
+    console.log(this.myarr);
   }
 
 }

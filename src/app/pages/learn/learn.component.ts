@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LearnComponent implements OnInit {
 
+  readonly FILLMETHOD_ANY = "anyuser";
+  readonly FILLMETHOD_OWN = "user";
+  readonly FILLMETHOD_PUBLIC = "notuser";
+
   constructor() { }
 
   ngOnInit(): void {

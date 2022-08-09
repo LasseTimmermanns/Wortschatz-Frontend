@@ -15,12 +15,10 @@ SocialLoginModule,
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginComponent } from './pages/menu/google-login/google-login.component';
-import {CookieService} from "./services/cookie/cookie.service";
+import {CookieService} from "./services/explore/cookie/cookie.service";
 import { WordlistSelectionComponent } from './pages/explore/wordlist-selection/wordlist-selection.component';
 import { LearnComponent } from './pages/learn/learn.component';
 import { SelectionMenuComponent } from './pages/learn/selection-menu/selection-menu.component';
-import { OwnSelectionComponent } from './pages/learn/selection-menu/own-selection/own-selection.component';
-import { PublicSelectionComponent } from './pages/learn/selection-menu/public-selection/public-selection.component';
 import { WordlistComponent } from './pages/learn/selection-menu/wordlist/wordlist.component';
 
 const allRoutes: Routes = [
@@ -40,8 +38,6 @@ const allRoutes: Routes = [
     WordlistSelectionComponent,
     LearnComponent,
     SelectionMenuComponent,
-    OwnSelectionComponent,
-    PublicSelectionComponent,
     WordlistComponent
   ],
   imports: [

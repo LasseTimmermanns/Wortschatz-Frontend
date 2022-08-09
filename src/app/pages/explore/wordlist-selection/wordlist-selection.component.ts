@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {WordAddService} from "../../../services/add-word/word-add.service";
-import {WordlistSelectionCreatorService} from "../../../services/wordlistselection-creator/wordlist-selection-creator.service";
-import {WordlistService} from "../../../services/wordlist/wordlist.service";
+import {WordAddService} from "../../../services/explore/add-word/word-add.service";
+import {WordlistSelectionCreatorService} from "../../../services/explore/wordlistselection-creator/wordlist-selection-creator.service";
+import {WordlistService} from "../../../services/explore/wordlist/wordlist.service";
 
 @Component({
   selector: 'app-wordlist-selection',

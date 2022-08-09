@@ -1,7 +1,7 @@
 import {ComponentRef, ElementRef, Injectable} from '@angular/core';
-import {CardComponent} from "../../pages/explore/card/card.component";
+import {CardComponent} from "../../../pages/explore/card/card.component";
 import {CardStyleService} from "../card-style/card-style.service";
-import {ExploreComponent} from "../../pages/explore/explore.component";
+import {ExploreComponent} from "../../../pages/explore/explore.component";
 
 @Injectable({
   providedIn: 'root'

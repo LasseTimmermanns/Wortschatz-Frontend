@@ -9,9 +9,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {ExploreComponent} from "../explore.component";
-import {CardCreationService} from "../../../services/card-creation.service";
+import {CardCreationService} from "../../../services/explore/card-creation.service";
 import {filter} from "rxjs";
-import {FilterService} from "../../../services/filter/filter.service";
+import {FilterService} from "../../../services/explore/filter/filter.service";
 
 
 

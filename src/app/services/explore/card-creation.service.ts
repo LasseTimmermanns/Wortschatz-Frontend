@@ -1,8 +1,8 @@
 import {ComponentRef, Injectable, ViewContainerRef} from '@angular/core';
-import {CardComponent} from "../pages/explore/card/card.component";
+import {CardComponent} from "../../pages/explore/card/card.component";
 import {HttpClient} from "@angular/common/http";
 import {filter, lastValueFrom} from "rxjs";
-import {ExploreComponent} from "../pages/explore/explore.component";
+import {ExploreComponent} from "../../pages/explore/explore.component";
 
 @Injectable({
   providedIn: 'root'
