@@ -1,0 +1,34 @@
+:host{
+  height: calc(50vh - 40px);
+  margin: 20px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 32px auto;
+  grid-template-columns: 100%;
+  width: 90%;
+}
+
+.name-div{
+  background-color: var(--secondary);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 40%;
+  max-width: 300px;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  font-weight: 600;
+}
+
+.wordlist-wrapper{
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  padding: 2%;
+}

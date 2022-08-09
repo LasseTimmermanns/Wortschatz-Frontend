@@ -1,0 +1,38 @@
+:host{
+  background-color: var(--primary);
+  height: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  max-height: 100%;
+  position: relative;
+  width: 200px;
+  display: grid;
+  gap: 10px;
+  grid-template-rows: 15% calc(85% - 15px);
+  grid-template-columns: 100%;
+}
+
+.wordlist-title{
+  background-color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.wordlist-content{
+  display: block;
+  color: white;
+  max-height: 100%;
+}
+
+.wordlist-content ul{
+  display: block;
+  color: white;
+  overflow-y: auto;
+  max-height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

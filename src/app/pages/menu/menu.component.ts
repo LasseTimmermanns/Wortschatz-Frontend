@@ -10,8 +10,8 @@ export class MenuComponent implements OnInit {
   @HostBinding('class.menu-retracted') retracted: boolean = false;
 
   pages = [
-    {name: "Explore", img: "explore_stroke.svg", routerLink: "#"},
-    {name: "Learn", img: "learn_stroke.svg", routerLink: "#"},
+    {name: "Explore", img: "explore_stroke.svg", routerLink: "explore"},
+    {name: "Learn", img: "learn_stroke.svg", routerLink: "learn"},
     {name: "Manage", img: "manage_stroke.svg", routerLink: "#"},
   ]
 
