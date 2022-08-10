@@ -20,11 +20,13 @@ import { WordlistSelectionComponent } from './pages/explore/wordlist-selection/w
 import { LearnComponent } from './pages/learn/learn.component';
 import { SelectionMenuComponent } from './pages/learn/selection-menu/selection-menu.component';
 import { WordlistComponent } from './pages/learn/selection-menu/wordlist/wordlist.component';
+import { LearnWordlistComponent } from './pages/learn-wordlist/learn-wordlist.component';
 
 const allRoutes: Routes = [
   {path: "", component: ExploreComponent},
   {path: "explore", component: ExploreComponent},
-  {path: "learn", component: LearnComponent}
+  {path: "learn", component: LearnComponent},
+  {path: "learn/:wordlistid", component: LearnWordlistComponent}
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const allRoutes: Routes = [
     WordlistSelectionComponent,
     LearnComponent,
     SelectionMenuComponent,
-    WordlistComponent
+    WordlistComponent,
+    LearnWordlistComponent
   ],
   imports: [
     RouterModule.forRoot(allRoutes),
