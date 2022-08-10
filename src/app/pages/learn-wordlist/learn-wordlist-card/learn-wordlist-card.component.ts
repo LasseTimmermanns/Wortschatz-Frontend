@@ -16,7 +16,6 @@ export class LearnWordlistCardComponent implements OnInit {
   constructor(private elRef : ElementRef) { }
 
   ngOnInit(): void {
-
     this.elRef.nativeElement.style.marginLeft = this.index * 2 + "px"
     this.elRef.nativeElement.style.marginTop = this.index * 2 + "px"
     this.elRef.nativeElement.style.zIndex = LearnWordlistComponent.DRAW_CARD_SIZE - this.index;

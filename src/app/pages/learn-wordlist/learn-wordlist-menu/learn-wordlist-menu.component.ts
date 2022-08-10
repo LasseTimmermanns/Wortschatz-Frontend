@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Wordlist} from "../Wordlist/wordlist";
+import {LearnWordlistComponent} from "../learn-wordlist.component";
 
 @Component({
   selector: 'app-learn-wordlist-menu',
@@ -10,6 +12,11 @@ export class LearnWordlistMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  shuffle(){
+    Wordlist.instance.shuffle();
+    LearnWordlistComponent.instance.createCards();
   }
 
 }

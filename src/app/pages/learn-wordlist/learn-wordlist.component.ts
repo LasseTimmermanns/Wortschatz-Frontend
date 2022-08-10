@@ -35,6 +35,7 @@ export class LearnWordlistComponent implements OnInit {
   }
 
   createCards(){
+    this.createCardsHere.clear();
     Wordlist.instance.nextStep();
     const list = Wordlist.instance.displayWords;
 

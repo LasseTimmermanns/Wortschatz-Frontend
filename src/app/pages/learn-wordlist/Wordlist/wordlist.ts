@@ -4,12 +4,14 @@ export class Wordlist {
 
   public static instance : Wordlist;
   id : string = "";
+  firstWords : string[] = [];
   words : string[] = [];
   displayWords : string[] = [];
   private index : number = 0
 
   constructor(id : string, words: string[]) {
     this.id = id;
+    this.firstWords = words
     this.words = words
     Wordlist.instance = this;
   }
@@ -29,6 +31,18 @@ export class Wordlist {
     }
 
     console.log(this.displayWords)
+  }
+
+  shuffle(){
+    let currentIndex = this.words.length,  randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [this.words[currentIndex], this.words[randomIndex]] = [
+        this.words[randomIndex], this.words[currentIndex]];
+    }
   }
 
 }
