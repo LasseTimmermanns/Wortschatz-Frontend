@@ -1,4 +1,6 @@
 <app-learn-wordlist-menu></app-learn-wordlist-menu>
 <div class="card-container">
-  <app-learn-wordlist-card [word]="'skurril'" [index]="0"></app-learn-wordlist-card>
+  <div #createCardsHere style="display: none"></div>
+  <!--<app-learn-wordlist-card *ngFor="let val of this.wordlist.displayWords; let i = index;" [index]="i" [word]="val">
+  </app-learn-wordlist-card>-->
 </div>

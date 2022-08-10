@@ -21,6 +21,8 @@ import { LearnComponent } from './pages/learn/learn.component';
 import { SelectionMenuComponent } from './pages/learn/selection-menu/selection-menu.component';
 import { WordlistComponent } from './pages/learn/selection-menu/wordlist/wordlist.component';
 import { LearnWordlistComponent } from './pages/learn-wordlist/learn-wordlist.component';
+import { LearnWordlistMenuComponent } from './pages/learn-wordlist/learn-wordlist-menu/learn-wordlist-menu.component';
+import { LearnWordlistCardComponent } from './pages/learn-wordlist/learn-wordlist-card/learn-wordlist-card.component';
 
 const allRoutes: Routes = [
   {path: "", component: ExploreComponent},
@@ -41,7 +43,9 @@ const allRoutes: Routes = [
     LearnComponent,
     SelectionMenuComponent,
     WordlistComponent,
-    LearnWordlistComponent
+    LearnWordlistComponent,
+    LearnWordlistMenuComponent,
+    LearnWordlistCardComponent
   ],
   imports: [
     RouterModule.forRoot(allRoutes),
