@@ -14,7 +14,7 @@ export class LearnWordlistComponent implements OnInit {
   constructor(private route: ActivatedRoute, private learnWordlistService : LearnWordlistService, private router : Router) {
     this.route.params.subscribe(async params => {
       if (!await learnWordlistService.hasAccess(params['wordlistid'])) {
-        await router.navigate(["/learn"]);
+        //await router.navigate(["/learn"]);
       }
       this.wordlistId = params['wordlistid'];
     });
