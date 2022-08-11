@@ -3,6 +3,7 @@ import {CardComponent} from "../../../../pages/explore/card/card.component";
 import {HttpClient} from "@angular/common/http";
 import {filter, lastValueFrom} from "rxjs";
 import {ExploreComponent} from "../../../../pages/explore/explore.component";
+import {Word} from "../../../../pages/explore/card/word/word";
 
 @Injectable({
   providedIn: 'root'
@@ -88,12 +89,7 @@ export class CardCreationService {
   private createCard(viewContainerRef : ViewContainerRef, index : number, data : any) : ComponentRef<CardComponent>{
     let component : ComponentRef<CardComponent> = viewContainerRef.createComponent(CardComponent);
     component.instance.index = index;
-    component.instance.synonyms = data.synonyms == undefined ? data.synonyms : data.synonyms.split("|")
-    component.instance.frequency = data.frequency;
-    component.instance.kind = data.kind;
-    component.instance.utilization = data.utilization;
-    component.instance.description = data.description;
-    component.instance.word = data.word;
+    component.instance.word = new Word(this.httpClient, data.word, data.id);
     component.instance.updateFrequency();
     return component;
   }
