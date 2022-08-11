@@ -1,18 +1,18 @@
 <div class="card-inner-wrapper">
-  <div #front *ngIf="showFront">
-    <p class="word wordFont">{{word}}</p>
+  <div #front *ngIf="!showBack">
+    <p class="word wordFont">{{word?.word}}</p>
   </div>
-  <div #back *ngIf="!showFront">
+  <div #back *ngIf="showBack">
     <div class="cardGrid">
-      <div class="wordDisplayBack wordFont">{{word}}</div>
-      <div class="kind" *ngIf="kind"><span class="title">Wortart</span>{{kind}}</div>
-      <div class="utilization" *ngIf="utilization"><span class="title">Nutzung</span>{{utilization}}</div>
-      <div class="frequency" *ngIf="frequency"><span class="title">Häufigkeit</span><div class="bulletContainer">
+      <div class="wordDisplayBack wordFont">{{word?.word}}</div>
+      <div class="kind" *ngIf="word?.kind"><span class="title">Wortart</span>{{word?.kind}}</div>
+      <div class="utilization" *ngIf="word?.utilization"><span class="title">Nutzung</span>{{word?.utilization}}</div>
+      <div class="frequency" *ngIf="word?.frequency"><span class="title">Häufigkeit</span><div class="bulletContainer">
         <div class="bullet white" *ngFor="let val of frequencyWhite"></div>
         <div class="bullet grey" *ngFor="let val of frequencyGrey"></div></div></div>
-      <div class="synonyms" *ngIf="synonyms"><span class="title">Synonyme</span>
-        <ul><li *ngFor="let synonym of synonyms">{{synonym}}</li></ul></div>
-      <div class="description" *ngIf="description"><span class="title">Beschreibung</span>{{description}}</div>
+      <div class="synonyms" *ngIf="word?.synonyms"><span class="title">Synonyme</span>
+        <ul><li *ngFor="let synonym of word?.synonyms">{{synonym}}</li></ul></div>
+      <div class="description" *ngIf="word?.description"><span class="title">Beschreibung</span>{{word?.description}}</div>
     </div>
   </div>
 

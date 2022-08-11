@@ -3,6 +3,8 @@ import {CardMovementService} from "../../../services/explore/Card/card-movement/
 import {CardStyleService} from "../../../services/explore/Card/card-style/card-style.service";
 import {ExploreComponent} from "../explore.component";
 import {WordAddService} from "../../../services/explore/add-word/word-add.service";
+import {Word} from "./word/word";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-card',
@@ -14,28 +16,19 @@ export class CardComponent implements OnInit {
   @HostBinding('class.rotate-left-animation') rotateLeft: boolean = false;
   @HostBinding('class.rotate-right-animation') rotateRight: boolean = false;
 
+  word: Word | undefined;
   isTop: boolean = true;
-  word : string = "skurril";
   isDragging: boolean = false;
   index : number = 0;
   elRef : ElementRef;
-  frequency : number = 0;
   frequencyGrey : any = undefined;
   frequencyWhite : any = undefined;
-  synonyms : string[] = ["absonderlich", "ausgefallen", "befremdend", "bizarr"];
-  showFront : boolean = true;
+  showBack : boolean = false;
   willBeRemoved : boolean = false;
-  kind : string = "";
-  utilization : string = "";
-  description : string = "";
-
-
 
   ngOnInit(): void {
-    if(this.index == 0){
+    if(this.index == 0)
       this.isTop = true;
-    }
-
 
     this.elRef.nativeElement.index = this.index;
     this.elRef.nativeElement.style.zIndex = ExploreComponent.stack_size - this.index;
@@ -47,15 +40,17 @@ export class CardComponent implements OnInit {
   }
 
   updateFrequency(){
-    this.frequencyWhite = this.createArray(this.frequency);
-    this.frequencyGrey = this.createArray(5 - this.frequency);
+    if(this.word == undefined) return;
+    this.frequencyWhite = this.createArray(this.word.frequency);
+    this.frequencyGrey = this.createArray(5 - this.word.frequency);
   }
 
 
-  constructor(private elRefConstructor:ElementRef,
+  constructor(private elRefConstructor : ElementRef,
               private cardMovementService : CardMovementService,
               private cardStyleService : CardStyleService,
               private wordAddService : WordAddService) {
+
     this.elRef = elRefConstructor;
   }
 
@@ -64,27 +59,28 @@ export class CardComponent implements OnInit {
     this.cardMovementService.pressCard(this.elRef, event);
   }
 
-    cardYes(){
-      this.addToSelectedWordlists();
-      if(this.willBeRemoved) return;
-      this.rotateRight = true;
-      this.removeAfterTime(300);
-    }
+  cardYes(){
+    this.addToSelectedWordlists();
+    if(this.willBeRemoved) return;
+    this.rotateRight = true;
+    this.removeAfterTime(300);
+  }
 
-    addToSelectedWordlists(){
-      this.wordAddService.addWord(this.word);
-      ExploreComponent.exploreComponent.cardAdded();
-    }
+  addToSelectedWordlists(){
+    if(this.word == undefined) return;
+    this.wordAddService.addWord(this.word.word);
+    ExploreComponent.exploreComponent.cardAdded();
+  }
 
-    notPicked(){
-      ExploreComponent.exploreComponent.cardRemoved();
-    }
+  notPicked(){
+    ExploreComponent.exploreComponent.cardRemoved();
+  }
 
-    cardNo(){
-      this.notPicked();
-      if(this.willBeRemoved) return;
-      this.rotateLeft = true;
-      this.removeAfterTime(300);
+  cardNo(){
+    this.notPicked();
+    if(this.willBeRemoved) return;
+    this.rotateLeft = true;
+    this.removeAfterTime(300);
   }
 
   removeAfterTime(time : number){
@@ -95,6 +91,7 @@ export class CardComponent implements OnInit {
   }
 
   switchDisplay(){
-    this.showFront = !this.showFront;
+    this.word?.getInfos();
+    this.showBack = !this.showBack;
   }
 }
