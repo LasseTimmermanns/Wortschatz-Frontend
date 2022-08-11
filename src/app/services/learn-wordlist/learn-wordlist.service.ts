@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {CookieService} from "../explore/cookie/cookie.service";
+import {CookieService} from "../shared/cookie/cookie.service";
 import {Wordlist} from "../../pages/learn-wordlist/Wordlist/wordlist";
 
 @Injectable({

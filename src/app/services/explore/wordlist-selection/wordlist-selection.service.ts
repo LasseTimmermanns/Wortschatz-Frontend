@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {CookieService} from "../cookie/cookie.service";
+import {CookieService} from "../../shared/cookie/cookie.service";
 import {firstValueFrom} from "rxjs";
 import {WordlistSelectionComponent} from "../../../pages/explore/wordlist-selection/wordlist-selection.component";
 
 @Injectable({
   providedIn: 'root'
 })
-export class WordlistService {
+export class WordlistSelectionService {
 
   constructor(private httpClient : HttpClient, private cookieService : CookieService) { }
 
@@ -49,5 +49,21 @@ export class WordlistService {
     };
 
     this.httpClient.delete(url, options)
+  }
+
+  async getWordlists(){
+    console.log("trying to get wordlists")
+    let url = "http://localhost:8080/api/get/wordlists";
+    let token = this.cookieService.getToken();
+    if(!token) return null;
+
+    let request = await firstValueFrom(this.httpClient.get<any>(url + "?token=" + token));
+
+    let out = [];
+    for(let i = 0; i < request.length; i++){
+      out.push({id: request[i].id, name: request[i].name})
+    }
+
+    return out;
   }
 }

@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core';
-import {CardMovementService} from "../../../services/explore/card-movement/card-movement.service";
-import {CardStyleService} from "../../../services/explore/card-style/card-style.service";
+import {CardMovementService} from "../../../services/explore/Card/card-movement/card-movement.service";
+import {CardStyleService} from "../../../services/explore/Card/card-style/card-style.service";
 import {ExploreComponent} from "../explore.component";
 import {WordAddService} from "../../../services/explore/add-word/word-add.service";
 

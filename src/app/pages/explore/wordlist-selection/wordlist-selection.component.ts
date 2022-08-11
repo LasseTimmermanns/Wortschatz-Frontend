@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {WordAddService} from "../../../services/explore/add-word/word-add.service";
-import {WordlistSelectionCreatorService} from "../../../services/explore/wordlistselection-creator/wordlist-selection-creator.service";
-import {WordlistService} from "../../../services/explore/wordlist/wordlist.service";
+import {WordlistSelectionService} from "../../../services/explore/wordlist-selection/wordlist-selection.service";
 
 @Component({
   selector: 'app-wordlist-selection',
@@ -15,8 +14,7 @@ export class WordlistSelectionComponent implements OnInit {
   lists : any = []
 
   constructor(private wordAddService : WordAddService,
-              private wordlistSelectionCreator : WordlistSelectionCreatorService,
-              private wordlistService : WordlistService) {}
+              private wordlistSelectionService : WordlistSelectionService) {}
 
   ngOnInit(): void {
     WordlistSelectionComponent.wordlistSelectionComponent = this;
@@ -32,7 +30,7 @@ export class WordlistSelectionComponent implements OnInit {
   }
 
   async generateWordlists(){
-    this.lists = await this.wordlistSelectionCreator.getWordlists();
+    this.lists = await this.wordlistSelectionService.getWordlists();
   }
 
   removeWordlists(){
@@ -40,7 +38,7 @@ export class WordlistSelectionComponent implements OnInit {
   }
 
   createWordlist(){
-    this.wordlistService.createWordlist();
+    this.wordlistSelectionService.createWordlist();
   }
 
 

@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
-import {CookieService} from "../../../services/explore/cookie/cookie.service";
-import {LoginService} from "../../../services/explore/login/login.service";
+import {CookieService} from "../../../services/shared/cookie/cookie.service";
+import {LoginService} from "../../../services/shared/login/login.service";
 import {WordlistSelectionComponent} from "../../explore/wordlist-selection/wordlist-selection.component";
 
 @Component({

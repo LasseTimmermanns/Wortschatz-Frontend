@@ -15,7 +15,7 @@ SocialLoginModule,
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginComponent } from './pages/menu/google-login/google-login.component';
-import {CookieService} from "./services/explore/cookie/cookie.service";
+import {CookieService} from "./services/shared/cookie/cookie.service";
 import { WordlistSelectionComponent } from './pages/explore/wordlist-selection/wordlist-selection.component';
 import { LearnComponent } from './pages/learn/learn.component';
 import { SelectionMenuComponent } from './pages/learn/selection-menu/selection-menu.component';

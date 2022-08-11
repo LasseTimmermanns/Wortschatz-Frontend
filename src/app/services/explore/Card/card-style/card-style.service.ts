@@ -1,12 +1,11 @@
 import {ElementRef, Injectable} from '@angular/core';
-import {StyleHelperService} from "../style-helper/style-helper.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardStyleService {
 
-  constructor(private styleHelper : StyleHelperService) { }
+  constructor() { }
 
   public resetMargins(elRef : ElementRef){
     let index = elRef.nativeElement.index;
@@ -31,8 +30,11 @@ export class CardStyleService {
   public getRotation(elRef : ElementRef) : number{
     let input = elRef.nativeElement.style.transform;
     let regexp = new RegExp("rotate\\((.*?)deg\\)");
-    // @ts-ignore
-    return +regexp.exec(input)[1];
+    let rotationString = regexp.exec(input);
+    let rotation = 0;
+    if(rotationString != null)
+      rotation = +rotationString[1];
+    return rotation;
   }
 
   getMarginTop(elRef : ElementRef) : number{
