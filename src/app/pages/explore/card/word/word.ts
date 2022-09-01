@@ -19,7 +19,6 @@ export class Word {
 
   async getInfos(){
     if(this.infosObtained) return;
-    console.log(this.id);
     let req = await firstValueFrom(this.httpClient.get<any>("http://localhost:8080/api/get/wordinfo?wordid=" + this.id));
 
     this.frequency = req.frequency;

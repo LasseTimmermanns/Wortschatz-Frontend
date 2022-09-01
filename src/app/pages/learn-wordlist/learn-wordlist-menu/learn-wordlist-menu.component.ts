@@ -14,6 +14,10 @@ export class LearnWordlistMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isShuffled() : boolean{
+    return Wordlist.instance.shuffled;
+  }
+
   shuffle(){
     Wordlist.instance.shuffle();
     LearnWordlistComponent.instance.createCards();

@@ -1,4 +1,7 @@
 <div class="name-div">{{title}}</div>
 <div class="wordlist-wrapper" (wheel)="horizontalScroll($event)">
-  <app-wordlist *ngFor="let val of myarr" [words]="val.words" [title]="val.name" [id]="val.id"></app-wordlist>
+  <app-wordlist *ngFor="let val of myarr" [words]="val.words" [title]="val.name" [id]="val.id"
+                (click)="openWordlist(val.id, val.words.length)"></app-wordlist>
+  <div class="alert" [ngClass]="showAlert ? 'show' : 'hide'">{{this.alertMessage}}</div>
 </div>
+

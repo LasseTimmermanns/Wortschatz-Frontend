@@ -32,3 +32,25 @@
   width: 100%;
   padding: 2%;
 }
+
+.alert{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 30px;
+  bottom: 10%;
+  transition: all 1s;
+  line-height: 0;
+  text-align: center;
+  color: white;
+  background-color: #00A896;
+}
+
+.hide{
+  opacity: 0;
+}
+
+.show{
+  opacity: 1;
+}

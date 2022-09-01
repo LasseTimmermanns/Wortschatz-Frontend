@@ -7,6 +7,7 @@ export class Wordlist {
   firstWords : string[] = [];
   words : string[] = [];
   displayWords : string[] = [];
+  shuffled : boolean = false;
   private index : number = 0
 
   constructor(id : string, words: string[]) {
@@ -34,6 +35,13 @@ export class Wordlist {
   }
 
   shuffle(){
+    this.shuffled = !this.shuffled;
+
+    if(!this.shuffled) {
+      this.words = this.firstWords;
+      return;
+    }
+
     let currentIndex = this.words.length,  randomIndex;
 
     while (currentIndex != 0) {

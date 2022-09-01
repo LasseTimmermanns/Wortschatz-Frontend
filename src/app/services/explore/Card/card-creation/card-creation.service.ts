@@ -90,7 +90,6 @@ export class CardCreationService {
     let component : ComponentRef<CardComponent> = viewContainerRef.createComponent(CardComponent);
     component.instance.index = index;
     component.instance.word = new Word(this.httpClient, data.word, data.id);
-    component.instance.updateFrequency();
     return component;
   }
 

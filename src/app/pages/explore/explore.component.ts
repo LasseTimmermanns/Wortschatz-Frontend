@@ -25,7 +25,7 @@ export class ExploreComponent implements OnInit {
   filterExtended = false;
   cardAdding = false;
   cardRemoving = false;
-  public static stack_size : number = 5;
+  public static readonly STACK_SIZE : number = 5;
   public static exploreComponent: ExploreComponent;
   @ViewChild('createCardsHere', {read: ViewContainerRef}) createCardsHere! : ViewContainerRef;
   @ViewChild('cardWrapper', {read: ViewRef}) cardWrapper! : ViewRef;
@@ -54,10 +54,12 @@ export class ExploreComponent implements OnInit {
     this.cardMovementService.moveCard(elRef, event);
   }
 
-  constructor(private renderer : Renderer2, private cardCreationService : CardCreationService, private cardMovementService : CardMovementService) { }
+  constructor(private renderer : Renderer2,
+              private cardCreationService : CardCreationService,
+              private cardMovementService : CardMovementService) { }
 
   async createNewCards(){
-    this.cards = await this.cardCreationService.createCards(this.createCardsHere, true, ExploreComponent.stack_size);
+    this.cards = await this.cardCreationService.createCards(this.createCardsHere, true, ExploreComponent.STACK_SIZE);
   }
 
   loggedIn() : boolean{
@@ -74,7 +76,7 @@ export class ExploreComponent implements OnInit {
   }
 
   async createCards(){
-    this.cards = await this.cardCreationService.createCards(this.createCardsHere, false, ExploreComponent.stack_size);
+    this.cards = await this.cardCreationService.createCards(this.createCardsHere, false, ExploreComponent.STACK_SIZE);
   }
 
   ngOnInit(): void {
@@ -118,8 +120,5 @@ export class ExploreComponent implements OnInit {
       this.cardRemoving = false;
     }, 350)
   }
-
-
-
 
 }

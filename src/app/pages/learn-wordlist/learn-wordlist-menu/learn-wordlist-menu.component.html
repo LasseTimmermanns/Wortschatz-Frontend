@@ -1,3 +1,3 @@
-<div class="item">
-  <img src="assets/img/learn_wordlist/shuffle.svg" (click)="shuffle()">
+<div class="item" [ngClass]="isShuffled() ? 'active' : 'inactive'">
+  <img src="assets/img/learn_wordlist/shuffle{{isShuffled() ? '_full' : ''}}.svg" (click)="shuffle()">
 </div>

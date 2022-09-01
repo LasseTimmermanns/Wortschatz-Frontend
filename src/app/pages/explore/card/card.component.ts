@@ -21,6 +21,7 @@ export class CardComponent implements OnInit {
   isDragging: boolean = false;
   index : number = 0;
   elRef : ElementRef;
+  stack_size : number = 5;
   frequencyGrey : any = undefined;
   frequencyWhite : any = undefined;
   showBack : boolean = false;
@@ -31,7 +32,7 @@ export class CardComponent implements OnInit {
       this.isTop = true;
 
     this.elRef.nativeElement.index = this.index;
-    this.elRef.nativeElement.style.zIndex = ExploreComponent.stack_size - this.index;
+    this.elRef.nativeElement.style.zIndex = ExploreComponent.STACK_SIZE - this.index;
     this.cardStyleService.resetMargins(this.elRef);
   }
 
@@ -45,12 +46,10 @@ export class CardComponent implements OnInit {
     this.frequencyGrey = this.createArray(5 - this.word.frequency);
   }
 
-
   constructor(private elRefConstructor : ElementRef,
               private cardMovementService : CardMovementService,
               private cardStyleService : CardStyleService,
               private wordAddService : WordAddService) {
-
     this.elRef = elRefConstructor;
   }
 
@@ -90,8 +89,10 @@ export class CardComponent implements OnInit {
     }, time);
   }
 
-  switchDisplay(){
-    this.word?.getInfos();
+  async switchDisplay(){
     this.showBack = !this.showBack;
+    await this.word?.getInfos();
+    if(this.frequencyGrey == undefined)
+      this.updateFrequency();
   }
 }
